@@ -30,8 +30,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [GitHub](https://github.com/DanSalazar/Rock-Paper-Scissor-React)
+- Live Site URL: [Vercel](https://rock-paper-scissor-react-henna.vercel.app/)
 
 ## My process
 

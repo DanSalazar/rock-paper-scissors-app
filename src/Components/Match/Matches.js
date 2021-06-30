@@ -10,7 +10,7 @@ const options = ["scissors", "paper", "spock", "lizard", "rock"];
 const sizes = { width: "200px", height: "200px", widthM: "100px", heightM: "100px" };
 
 const Matches = ({ election, returnGame }) => {
-    const globalScore = useContext(ScoreContext);
+    const { setScore } = useContext(ScoreContext);
 
     const [finishMatch, setfinishMatch] = useState(false);
     const [win, setWin] = useState(false);
@@ -24,20 +24,20 @@ const Matches = ({ election, returnGame }) => {
         if (winnerGame.beats.includes(opponent)) {
             setWinner(winnerGame.name);
             setWin(true);
-            globalScore.setScore(globalScore.score + 1);
+            setScore(score => score + 1);
         } else if (opponent === election) {
             setWinner('');
             setWin('Draw');
         } else {
             setWinner(opponent);
-            globalScore.setScore(score => score === 0 ? 0: score - 1);
+            setScore(score => score === 0 ? 0: score - 1);
         }
 
         return setTimeout(() => {
             setfinishMatch(true);
         }, 1500);
 
-    }, [election, globalScore, opponent]);
+    }, [election, setScore, opponent]);
 
 
     return (

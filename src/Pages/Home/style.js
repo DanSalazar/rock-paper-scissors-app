@@ -4,8 +4,9 @@ export const AppContainer = styled.div`
     width: 85%;
     height: 100vh;
     display: flex;
+    padding: 1.5em 0;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     margin: auto;
 
