@@ -9,7 +9,7 @@ const Header = () => {
 
     return (
         <HeaderStyled>
-            <HeaderLogo src={Logo}/>
+            <HeaderLogo alt="logo" src={Logo}/>
             <HeaderState>
                 <p>score</p>
                 <span> { score } </span>

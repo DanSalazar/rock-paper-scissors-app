@@ -16,7 +16,7 @@ const Rules = ({rulesShow, setRules}) => {
                 <RulesContainer>
                     <RulesContent>
                         <p>Rules</p>
-                        <SvgRules src={imageRules}/>
+                        <SvgRules src={imageRules} alt="image-rules"/>
                         <RulesButton onClick={rulesOff}> 
                             <img src={iconClose} alt="icon"/>
                         </RulesButton>

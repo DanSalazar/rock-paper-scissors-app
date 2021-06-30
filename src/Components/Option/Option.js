@@ -46,7 +46,7 @@ const Option = ({ handler, width, height, gridCol, gridRow, place, heightM, widt
                 height={height}
                 widthM={widthM}
                 heightM={heightM}>
-                <Svg src={imageOfOption[name]} data-value={name} />
+                <Svg src={imageOfOption[name]} alt="icon-option" data-value={name} />
             </OptionStyled>
         </OptionBorder>
     );
