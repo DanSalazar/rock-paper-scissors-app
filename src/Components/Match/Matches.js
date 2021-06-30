@@ -15,7 +15,7 @@ const Matches = ({ election, returnGame }) => {
     const [finishMatch, setfinishMatch] = useState(false);
     const [win, setWin] = useState(false);
     const [winner, setWinner] = useState('');
-    const [opponent, setOpponent] = useState(options[Math.round(Math.random()*4)]);
+    const [opponent,] = useState(options[Math.round(Math.random()*4)]);
 
     useEffect(() => {
         // Return winner game
