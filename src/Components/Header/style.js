@@ -5,7 +5,7 @@ export const HeaderStyled = styled.div`
     justify-content: space-between;
     align-items: center;
     border: 3px solid hsl(217, 16%, 45%);
-    border-radius: 8px;
+    border-radius: 1em;
     width: 100%;
     height: auto;
     padding: 1em 1.5em;
@@ -25,8 +25,8 @@ export const HeaderState = styled.div`
     height: auto;
     text-transform: uppercase;
     text-align: center;
-    width: 5.25em;
-    padding: 0.5em 0;
+    min-width: 6.75em;
+    padding: 0.875em 0;
     color: hsl(229, 64%, 46%);
 
     span {

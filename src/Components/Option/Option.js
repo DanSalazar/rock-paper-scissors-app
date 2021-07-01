@@ -23,7 +23,7 @@ const imageOfOption = {
 }
 
 const Option = ({ handler, width, height, gridCol, gridRow, place, heightM, widthM,
-    winner, name, svg, padding }) => {
+    winner, name, svg, padding, anim }) => {
 
     const handleOption = (e) => {
         return handler ? handler(e.target.dataset.value) : null;
@@ -39,7 +39,8 @@ const Option = ({ handler, width, height, gridCol, gridRow, place, heightM, widt
             gridRow={gridRow}
             gridCol={gridCol}
             gradient={gradientOptions[name]}
-            padding={padding} >
+            padding={padding}
+            anim={anim} >
             <OptionStyled
                 data-value={name}
                 width={width}

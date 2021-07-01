@@ -24,6 +24,7 @@ export const OptionMatchWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    transition: 0.2s ease;
 
     span {
         color: #fff;
@@ -43,4 +44,38 @@ export const OptionMatchWrapper = styled.div`
             margin: 0 0 2em 0;
         }
     }
+`;
+
+
+export const OptionOverlay = styled.div`
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 20%);
+    padding: 0.875em;
+
+
+    div {
+        width: ${props => props.widthM};
+        height: ${props => props.heightM};
+    }
+
+    @media screen and (max-width: 320px){
+        div {
+            width: 65px;
+            height: 65px;
+        }
+    }
+
+    @media screen and (max-width: 320px){
+        padding: 0.6em;
+    }
+
+    @media screen and (min-width: 1024px){
+        padding: 2.25em;
+
+        div {
+            width: ${props => props.width};
+            height: ${props => props.height}; 
+        }
+    }
+
 `;

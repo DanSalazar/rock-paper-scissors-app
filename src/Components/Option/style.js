@@ -32,7 +32,7 @@ export const OptionBorder = styled.div`
     place-self: ${props => props.place};
     animation: ${props => {
         return props.winner === props.name ?
-            "winAnim 0.15s ease 1.5s forwards" : null;
+            `winAnim 0.1s ease forwards` : null;
     }};
 
     @keyframes winAnim {
@@ -41,9 +41,9 @@ export const OptionBorder = styled.div`
         }
 
         100% {
-           box-shadow: 0px 0px 20px hsla(0, 0%, 20%, 0.1),
-           0px 0px 40px hsla(0, 0%, 40%, 0.2),
-           0px 0px 80px hsla(0, 0%, 60%, 0.4);
+           box-shadow: 0px 0px 0px 2em rgb(204 204 204 / 12%), 
+           0px 0px 0px 3em rgb(204 204 204 / 8%), 
+           0px 0px 0px 4em rgb(204 204 204 / 4%);
         }
     }
 

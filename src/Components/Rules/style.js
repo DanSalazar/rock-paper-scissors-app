@@ -59,6 +59,8 @@ export const RulesButton = styled.button`
 `;
 
 export const SvgRules = styled.img`
+    min-height: 250px;
+
     @media screen and (min-width: 768px){
         grid-column: 1/3;
     }

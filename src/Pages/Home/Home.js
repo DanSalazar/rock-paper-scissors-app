@@ -26,7 +26,7 @@ const Home = () => {
                 match ? <Matches election={election} returnGame={returnGame} />
                 :       <OptionPentagon handleElection={handleElection} />
             }
-            <Button width="120px" onClick={() => setRules(true)}> Rules </Button>
+            <Button width="130px" onClick={() => setRules(true)}> Rules </Button>
             <Rules rulesShow={rulesShow} setRules={setRules} />
         </AppContainer>
     );

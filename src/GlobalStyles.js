@@ -9,10 +9,9 @@ const GlobalStyles = createGlobalStyle`
 
     body {
         font-family: 'Barlow Semi Condensed', sans-serif;
-        background: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+        background: radial-gradient(circle, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
         font-size: 16px;
         width: 100%;
-
     }
 
     img {

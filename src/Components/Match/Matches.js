@@ -4,8 +4,7 @@ import Option from '../Option/Option';
 import checkWinner from '../../checkWinner';
 import Result from '../Result/Result';
 import ScoreContext from '../../ScoreContext/ScoreContext';
-
-const options = ["scissors", "paper", "spock", "lizard", "rock"];
+import MatchOpponent from './MatchOpponent';
 
 const sizes = { width: "200px", height: "200px", widthM: "100px", heightM: "100px" };
 
@@ -15,7 +14,7 @@ const Matches = ({ election, returnGame }) => {
     const [finishMatch, setfinishMatch] = useState(false);
     const [win, setWin] = useState(false);
     const [winner, setWinner] = useState('');
-    const [opponent,] = useState(options[Math.round(Math.random()*4)]);
+    const [opponent, setOpponent] = useState();
 
     useEffect(() => {
         // Return winner game
@@ -28,14 +27,14 @@ const Matches = ({ election, returnGame }) => {
         } else if (opponent === election) {
             setWinner('');
             setWin('Draw');
-        } else {
+        } else if (winnerGame.defeat.includes(opponent)) {
             setWinner(opponent);
             setScore(score => score === 0 ? 0: score - 1);
         }
 
         return setTimeout(() => {
-            setfinishMatch(true);
-        }, 1500);
+            setfinishMatch(true)
+        }, 2500);
 
     }, [election, setScore, opponent]);
 
@@ -53,24 +52,17 @@ const Matches = ({ election, returnGame }) => {
                                 heightM={sizes.heightM}
                                 padding="2.25em"
                                 name={election}
-                                winner={winner}>
+                                winner={winner}
+                                anim="true">
                             </Option> : null
                     }
                     <span>You Picked</span>
                 </OptionMatchWrapper>
                 <OptionMatchWrapper>
-                    {
-                        opponent ?
-                            <Option
-                                width={sizes.width}
-                                height={sizes.height}
-                                widthM={sizes.widthM}
-                                heightM={sizes.heightM}
-                                padding="2.25em"
-                                name={opponent}
-                                winner={winner}>
-                            </Option> : null
-                    }
+                    <MatchOpponent 
+                        opponent={opponent} 
+                        winner={winner}
+                        setOpponent={setOpponent} />
                     <span> The House Picked </span>
                 </OptionMatchWrapper>
                 {

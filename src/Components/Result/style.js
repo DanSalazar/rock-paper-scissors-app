@@ -3,7 +3,7 @@ import { Button } from '../../Pages/Home/style';
 import { show } from '../../Pages/Home/style';
 
 export const ResultContainer = styled.div`
-    animation: ${show} 0.1s ease;
+    animation: ${show} 0.20s ease;
     grid-column: 1/3;
     align-self: center;
     justify-self: center;

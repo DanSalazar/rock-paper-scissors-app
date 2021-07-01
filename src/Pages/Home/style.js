@@ -4,7 +4,7 @@ export const AppContainer = styled.div`
     width: 85%;
     height: 100vh;
     display: flex;
-    padding: 1.5em 0;
+    padding: 1.25em 0;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -12,12 +12,12 @@ export const AppContainer = styled.div`
 
     @media screen and (min-width: 1440px){
         width: 100%;
-        padding: 1.5em 3em;
+        padding: 2.25em 3em;
     }
 `;
 
 export const Button = styled.button`
-    padding: 0.75em 0;
+    padding: 0.625em 0;
     width: ${props => props.width};
     border: 1px solid #fff;
     color: #fff;
@@ -49,4 +49,3 @@ export const show = keyframes`
         opacity: 1;
     }
 `;
-
