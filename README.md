@@ -31,7 +31,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [GitHub](https://github.com/DanSalazar/Rock-Paper-Scissor-React)
-- Live Site URL: [Vercel](https://rock-paper-scissor-react-henna.vercel.app/)
+- Live Site URL: [Vercel](https://rock-paper-scissor-react-gamma.vercel.app/)
 
 ## My process
 
@@ -44,7 +44,7 @@ Users should be able to:
 
 ## Author
 
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/DanSalazar)
+- Frontend Mentor - [@DanSalazar](https://www.frontendmentor.io/profile/DanSalazar)
 - Twitter - [@Danann26](https://www.twitter.com/Danann26)
 
 # Getting Started with Create React App
