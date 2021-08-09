@@ -31,11 +31,11 @@ const Matches = ({ election, returnGame }) => {
             setScore(score => score === 0 ? 0: score - 1);
         }
 
-        setTimeout(() => {
+        return setTimeout(() => {
             setfinishMatch(true)
         }, 2500);
 
-    }, []);
+    }, [election, opponent, setScore]);
 
 
     return (
