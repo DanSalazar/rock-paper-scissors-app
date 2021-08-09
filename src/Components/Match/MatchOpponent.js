@@ -2,37 +2,31 @@ import React, { useEffect } from 'react';
 import { OptionOverlay } from './style';
 import Option from '../Option/Option';
 
-const options = ["scissors", "paper", "spock", "lizard", "rock"];
+const OPTIONS = ["scissors", "paper", "spock", "lizard", "rock"];
 
-const sizes = { width: "200px", height: "200px", widthM: "100px", heightM: "100px" };
+const SIZES = { D: "200px",  M: "100px" };
 
-const MatchOpponent = ({ opponent, winner, setOpponent }) => {
+const MatchOpponent = ({ optionName, win, setOpponent }) => {
 
     useEffect(() => {
         setTimeout(() => {
-            setOpponent(options[Math.round(Math.random() * 4)]);
+            setOpponent(OPTIONS[Math.round(Math.random() * 4)]);
         }, 1500)
     }, [setOpponent])
 
     return (
         <>
             {
-                opponent ?
+                optionName ?
                     <Option
-                        width={sizes.width}
-                        height={sizes.height}
-                        widthM={sizes.widthM}
-                        heightM={sizes.heightM}
+                        sizeD={SIZES.D}
+                        sizeM={SIZES.M}
                         padding="2.25em"
-                        name={opponent}
-                        winner={winner}>
+                        optionName={optionName}
+                        win={win}>
                     </Option> :
-                    <OptionOverlay
-                        width={sizes.width}
-                        height={sizes.height}
-                        widthM={sizes.widthM}
-                        heightM={sizes.heightM}>
-                        <div />
+                    <OptionOverlay>
+                        <div/>
                     </OptionOverlay>
             }
         </>

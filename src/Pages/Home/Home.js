@@ -22,11 +22,10 @@ const Home = () => {
     return (
         <AppContainer>
             <Header />
-            {
-                match ? <Matches election={election} returnGame={returnGame} />
-                :       <OptionPentagon handleElection={handleElection} />
+            {match ? <Matches election={election} returnGame={returnGame} />
+            :        <OptionPentagon handleElection={handleElection} />
             }
-            <Button width="130px" onClick={() => setRules(true)}> Rules </Button>
+            <Button onClick={() => setRules(true)}> Rules </Button>
             <Rules rulesShow={rulesShow} setRules={setRules} />
         </AppContainer>
     );

@@ -52,10 +52,9 @@ export const OptionOverlay = styled.div`
     background: rgba(0, 0, 0, 20%);
     padding: 0.875em;
 
-
     div {
-        width: ${props => props.widthM};
-        height: ${props => props.heightM};
+        width: 200px;
+        height: 200px;
     }
 
     @media screen and (max-width: 320px){

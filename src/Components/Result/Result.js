@@ -1,11 +1,11 @@
 import React from 'react';
 import { ResultContainer, ResultTitle, ButtonResult } from './style';
 
-const Result = ({ win, returnGame }) => {
+const Result = ({ win, draw, returnGame }) => {
     return (
         <ResultContainer>
             <ResultTitle>
-                { win === "Draw" ? win: win ? "You Win": "You Lose" }
+                {draw ? 'Draw': win ? 'You Win': 'You lose'}
             </ResultTitle> 
             <ButtonResult width="100%" onClick={returnGame}>
                 Play Again

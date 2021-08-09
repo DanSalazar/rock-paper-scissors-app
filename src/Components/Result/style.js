@@ -23,6 +23,7 @@ export const ResultTitle = styled.h2`
 `;
 
 export const ButtonResult = styled(Button)`
+    width: 100%;
     background: #fff;
     margin: 0.5em 0;
     color: hsl(214, 47%, 23%);

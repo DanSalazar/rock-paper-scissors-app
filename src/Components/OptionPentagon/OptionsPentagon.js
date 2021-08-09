@@ -11,30 +11,30 @@ const OptionPentagon = ({ handleElection }) => {
                 handler={handleElection}
                 gridRow="1"
                 gridCol="1/3"
-                name="scissors" />
+                optionName="scissors" />
             <Option handler={handleElection}
                 gridRow="2"
                 gridCol="1/1"
                 place="flex-start"
-                name="spock" />
+                optionName="spock" />
             <Option
                 handler={handleElection}
                 gridRow="2"
                 gridCol="2/3"
                 place="flex-end"
-                name="paper" />
+                optionName="paper" />
             <Option
                 handler={handleElection}
                 gridRow="3"
                 gridCol="1/1"
                 place="flex-end"
-                name="lizard" />
+                optionName="lizard" />
             <Option
                 handler={handleElection}
                 gridRow="3"
                 gridCol="2/3"
                 place="flex-start"
-                name="rock" />
+                optionName="rock" />
         </PentagonWrapper>
     );
 }

@@ -18,7 +18,7 @@ export const AppContainer = styled.div`
 
 export const Button = styled.button`
     padding: 0.625em 0;
-    width: ${props => props.width};
+    width: 130px;
     border: 1px solid #fff;
     color: #fff;
     cursor: pointer;

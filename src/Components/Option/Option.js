@@ -1,10 +1,10 @@
 import React from 'react'
 import { OptionStyled, OptionBorder, Svg } from './style';
-import Spock from '../../images/icon-spock.svg';
-import Rock from '../../images/icon-rock.svg';
-import Paper from '../../images/icon-paper.svg';
-import Lizard from '../../images/icon-lizard.svg';
-import Scissors from '../../images/icon-scissors.svg';
+import spock from '../../images/icon-spock.svg';
+import rock from '../../images/icon-rock.svg';
+import paper from '../../images/icon-paper.svg';
+import lizard from '../../images/icon-lizard.svg';
+import scissors from '../../images/icon-scissors.svg';
 
 const gradientOptions = {
     lizard: "hsl(261, 73%, 60%), hsl(261, 72%, 63%)",
@@ -15,15 +15,14 @@ const gradientOptions = {
 }
 
 const imageOfOption = {
-    lizard: Lizard,
-    paper: Paper,
-    scissors: Scissors,
-    rock: Rock,
-    spock: Spock
+    lizard,
+    paper,
+    scissors,
+    rock,
+    spock
 }
 
-const Option = ({ handler, width, height, gridCol, gridRow, place, heightM, widthM,
-    winner, name, svg, padding, anim }) => {
+const Option = ({ handler, gridCol, gridRow, place, optionName, padding, win, sizeM, sizeD }) => {
 
     const handleOption = (e) => {
         return handler ? handler(e.target.dataset.value) : null;
@@ -32,22 +31,15 @@ const Option = ({ handler, width, height, gridCol, gridRow, place, heightM, widt
     return (
         <OptionBorder
             onClick={handleOption}
-            name={name}
-            data-value={name}
-            winner={winner}
+            data-value={optionName}
+            win={win}
             place={place}
             gridRow={gridRow}
             gridCol={gridCol}
-            gradient={gradientOptions[name]}
-            padding={padding}
-            anim={anim} >
-            <OptionStyled
-                data-value={name}
-                width={width}
-                height={height}
-                widthM={widthM}
-                heightM={heightM}>
-                <Svg src={imageOfOption[name]} alt="icon-option" data-value={name} />
+            gradient={gradientOptions[optionName]}
+            padding={padding}>
+            <OptionStyled  data-value={optionName} sizeM={sizeM} sizeD={sizeD} >
+                <Svg src={imageOfOption[optionName]} alt="icon-option" data-value={optionName} />
             </OptionStyled>
         </OptionBorder>
     );
