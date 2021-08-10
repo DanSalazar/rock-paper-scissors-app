@@ -25,7 +25,7 @@ const MatchOpponent = ({ optionName, win, setOpponent }) => {
                         optionName={optionName}
                         win={win}>
                     </Option> :
-                    <OptionOverlay>
+                    <OptionOverlay sizeD={SIZES.D} sizeM={SIZES.M}>
                         <div/>
                     </OptionOverlay>
             }
