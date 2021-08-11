@@ -5,6 +5,7 @@ export const RulesContainer = styled.div`
     background: #fff;
     position: fixed;
     display: flex;
+    backdrop-filter: blur(1.5px);
     justify-content: center;
     align-items: center;
     top: 0;

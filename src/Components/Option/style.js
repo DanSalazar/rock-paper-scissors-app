@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const OptionBorder = styled.div`
     border-radius: 50%;
     cursor: pointer;
@@ -11,6 +10,11 @@ export const OptionBorder = styled.div`
     grid-row: ${props => props.gridRow};
     place-self: ${props => props.place};
     animation: ${props => props.win &&`winAnim 0.1s ease forwards`};
+    transition: 0.4s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
     
     @keyframes winAnim {
         0% {
