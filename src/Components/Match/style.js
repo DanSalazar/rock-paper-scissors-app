@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { show } from '../../Pages/Home/style';
+import styled from 'styled-components'
+import { show } from '../../Pages/Home/style'
 
 export const OptionsMatch = styled.div`
     display: grid;
@@ -17,7 +17,7 @@ export const OptionsMatch = styled.div`
     @media screen and (min-width: 1440px){
         width: 70%;
     }
-`;
+`
 
 export const OptionMatchWrapper = styled.div`
     display: flex;
@@ -44,8 +44,7 @@ export const OptionMatchWrapper = styled.div`
             margin: 0 0 2em 0;
         }
     }
-`;
-
+`
 
 export const OptionOverlay = styled.div`
     border-radius: 50%;
@@ -77,4 +76,4 @@ export const OptionOverlay = styled.div`
         }
     }
 
-`;
+`

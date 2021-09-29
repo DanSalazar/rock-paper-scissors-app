@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { show } from '../../Pages/Home/style';
+import styled from 'styled-components'
+import { show } from '../../Pages/Home/style'
 
 export const RulesContainer = styled.div`
     background: #fff;
@@ -17,7 +17,7 @@ export const RulesContainer = styled.div`
     @media screen and (min-width: 768px){
         background: rgba(0, 0, 0, 0.75);
     }    
-`;
+`
 
 export const RulesContent = styled.div`
     display: grid;
@@ -42,7 +42,7 @@ export const RulesContent = styled.div`
         padding: 1.75em 3em 2.5em 3em;
         justify-items: flex-start;
     }    
-`;
+`
 
 export const RulesButton = styled.button`
     text-transform: uppercase;
@@ -57,7 +57,7 @@ export const RulesButton = styled.button`
         grid-column: 2/3;
         grid-row: 1;
     }    
-`;
+`
 
 export const SvgRules = styled.img`
     min-height: 250px;
@@ -65,4 +65,4 @@ export const SvgRules = styled.img`
     @media screen and (min-width: 768px){
         grid-column: 1/3;
     }
-`;
+`

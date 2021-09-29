@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components'
 
 export const AppContainer = styled.div`
     width: 85%;
@@ -14,7 +14,7 @@ export const AppContainer = styled.div`
         width: 100%;
         padding: 2.25em 3em;
     }
-`;
+`
 
 export const Button = styled.button`
     padding: 0.625em 0;
@@ -38,7 +38,7 @@ export const Button = styled.button`
     @media screen and (min-width: 1024px){
         align-self: flex-end;
     }
-`;
+`
 
 export const show = keyframes`
     0% {
@@ -48,4 +48,4 @@ export const show = keyframes`
     100% {
         opacity: 1;
     }
-`;
+`

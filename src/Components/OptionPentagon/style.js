@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { show } from '../../Pages/Home/style';
+import styled from 'styled-components'
+import { show } from '../../Pages/Home/style'
 
 export const PentagonWrapper = styled.div`
     position: relative;
@@ -20,7 +20,7 @@ export const PentagonWrapper = styled.div`
     @media screen and (min-width: 1024px){
         width: 28.75em;
     }  
-`;
+`
 
 export const Pentagon = styled.img`
     position: absolute;
@@ -30,4 +30,4 @@ export const Pentagon = styled.img`
     @media screen and (min-width: 1024px){
         max-width: 100%;
     } 
-`;
+`

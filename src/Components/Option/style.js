@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const OptionBorder = styled.div`
     border-radius: 50%;
@@ -9,7 +9,7 @@ export const OptionBorder = styled.div`
     grid-column: ${props => props.gridCol};
     grid-row: ${props => props.gridRow};
     place-self: ${props => props.place};
-    animation: ${props => props.win && `winAnim 0.15s ease forwards`};
+    animation: ${props => props.win && 'winAnim 0.15s ease forwards'};
     transition: 0.4s ease;
 
     &:hover {
@@ -34,13 +34,13 @@ export const OptionBorder = styled.div`
     }
     
     @media screen and (min-width: 1024px){
-        padding: ${props => props.padding ? props.padding : "1em"};
+        padding: ${props => props.padding ? props.padding : '1em'};
     }
-`;
+`
 
 export const OptionStyled = styled.div`
-    width: ${props => props.sizeM ? props.sizeM: '75px'};
-    height: ${props => props.sizeM ? props.sizeM: '75px'};
+    width: ${props => props.sizeM ? props.sizeM : '75px'};
+    height: ${props => props.sizeM ? props.sizeM : '75px'};
     background: #fff;
     display: flex;
     justify-content: center;
@@ -54,10 +54,10 @@ export const OptionStyled = styled.div`
     }
 
     @media screen and (min-width: 1024px){
-        width: ${props => props.sizeD ? props.sizeD: '110px'};
-        height: ${props => props.sizeD ? props.sizeD: '110px'};
+        width: ${props => props.sizeD ? props.sizeD : '110px'};
+        height: ${props => props.sizeD ? props.sizeD : '110px'};
     }
-`;
+`
 
 export const Svg = styled.img`
     max-width: 45%;
@@ -65,4 +65,4 @@ export const Svg = styled.img`
     @media screen and (min-width: 1024px){
         min-width: 40%;
     }
-`;
+`

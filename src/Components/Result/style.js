@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-import { Button } from '../../Pages/Home/style';
-import { show } from '../../Pages/Home/style';
+import styled from 'styled-components'
+import { Button, show } from '../../Pages/Home/style'
 
 export const ResultContainer = styled.div`
     animation: ${show} 0.20s ease;
@@ -12,7 +11,7 @@ export const ResultContainer = styled.div`
         grid-column: 2/2;
         grid-row: 1;
     }
-`;
+`
 
 export const ResultTitle = styled.h2`
     color: #fff;
@@ -20,11 +19,11 @@ export const ResultTitle = styled.h2`
     letter-spacing: 2px;
     text-transform: uppercase;
     text-align: center;
-`;
+`
 
 export const ButtonResult = styled(Button)`
     width: 100%;
     background: #fff;
     margin: 0.5em 0;
     color: hsl(214, 47%, 23%);
-`;
+`

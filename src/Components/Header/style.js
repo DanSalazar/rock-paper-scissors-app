@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const HeaderStyled = styled.div`
     display: flex;
@@ -13,11 +13,11 @@ export const HeaderStyled = styled.div`
     @media screen and (min-width:1024px){
         max-width: 60%;
     }
-`;
+`
 
 export const HeaderLogo = styled.img`
     max-width: 30%;
-`;
+`
 
 export const HeaderState = styled.div`
     background: #fff;
@@ -37,4 +37,4 @@ export const HeaderState = styled.div`
     @media screen and (min-width:1024px){
         max-width: 50%;
     }
-`;
+`
