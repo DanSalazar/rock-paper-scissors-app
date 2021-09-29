@@ -8,7 +8,7 @@ export const HeaderStyled = styled.div`
     border-radius: 1em;
     width: 100%;
     height: auto;
-    padding: 1em 1.5em;
+    padding: 1.25em;
 
     @media screen and (min-width:1024px){
         max-width: 60%;

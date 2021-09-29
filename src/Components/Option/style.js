@@ -9,7 +9,7 @@ export const OptionBorder = styled.div`
     grid-column: ${props => props.gridCol};
     grid-row: ${props => props.gridRow};
     place-self: ${props => props.place};
-    animation: ${props => props.win &&`winAnim 0.1s ease forwards`};
+    animation: ${props => props.win && `winAnim 0.15s ease forwards`};
     transition: 0.4s ease;
 
     &:hover {
@@ -24,7 +24,8 @@ export const OptionBorder = styled.div`
         100% {
             box-shadow: 0px 0px 0px 2em rgb(204 204 204 / 12%), 
             0px 0px 0px 3em rgb(204 204 204 / 8%), 
-           0px 0px 0px 4em rgb(204 204 204 / 4%);
+            0px 0px 0px 4em rgb(204 204 204 / 4%);
+            transform: scale(1.2);
         }
     }
     
