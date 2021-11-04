@@ -5,6 +5,7 @@ import rock from '../../images/icon-rock.svg'
 import paper from '../../images/icon-paper.svg'
 import lizard from '../../images/icon-lizard.svg'
 import scissors from '../../images/icon-scissors.svg'
+import PropTypes from 'prop-types'
 
 const gradientOptions = {
   lizard: 'hsl(261, 73%, 60%), hsl(261, 72%, 63%)',
@@ -46,3 +47,15 @@ const Option = ({ handler, gridCol, gridRow, place, optionName, padding, win, si
 }
 
 export default Option
+
+Option.propTypes = {
+  handler: PropTypes.func,
+  gridCol: PropTypes.string,
+  gridRow: PropTypes.string,
+  place: PropTypes.string,
+  optionName: PropTypes.string,
+  padding: PropTypes.string,
+  win: PropTypes.bool,
+  sizeD: PropTypes.string,
+  sizeM: PropTypes.string
+}

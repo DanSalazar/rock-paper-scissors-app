@@ -1,5 +1,6 @@
 import React from 'react'
 import { ResultContainer, ResultTitle, ButtonResult } from './style'
+import PropTypes from 'prop-types'
 
 const Result = ({ win, draw, returnGame }) => {
   return (
@@ -15,3 +16,9 @@ const Result = ({ win, draw, returnGame }) => {
 }
 
 export default Result
+
+Result.propTypes = {
+  win: PropTypes.bool.isRequired,
+  draw: PropTypes.bool.isRequired,
+  returnGame: PropTypes.func.isRequired
+}

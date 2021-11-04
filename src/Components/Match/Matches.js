@@ -5,6 +5,7 @@ import checkWinner from '../../checkWinner'
 import Result from '../Result/Result'
 import ScoreContext from '../../ScoreContext/ScoreContext'
 import MatchOpponent from './MatchOpponent'
+import PropTypes from 'prop-types'
 
 const SIZES = { D: '200px', M: '100px' }
 
@@ -49,6 +50,7 @@ const Matches = ({ election, returnGame }) => {
             />}
           <span>You Picked</span>
         </OptionMatchWrapper>
+
         <OptionMatchWrapper>
           <MatchOpponent
             optionName={opponent}
@@ -57,6 +59,7 @@ const Matches = ({ election, returnGame }) => {
           />
           <span> The House Picked </span>
         </OptionMatchWrapper>
+
         {finishMatch && <Result win={win} draw={draw} returnGame={returnGame} />}
       </OptionsMatch>
     </>
@@ -64,3 +67,8 @@ const Matches = ({ election, returnGame }) => {
 }
 
 export default Matches
+
+Matches.propTypes = {
+  election: PropTypes.string.isRequired,
+  returnGame: PropTypes.func.isRequired
+}

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { OptionOverlay } from './style'
 import Option from '../Option/Option'
+import PropTypes from 'prop-types'
 
 const OPTIONS = ['scissors', 'paper', 'spock', 'lizard', 'rock']
 
@@ -23,9 +24,17 @@ const MatchOpponent = ({ optionName, win, setOpponent }) => {
             optionName={optionName}
             win={win}
           />
-        : <OptionOverlay sizeD={SIZES.D} sizeM={SIZES.M} />}
+        : <OptionOverlay sizeD={SIZES.D} sizeM={SIZES.M}>
+          <div/>
+        </OptionOverlay>}
     </>
   )
 }
 
 export default MatchOpponent
+
+MatchOpponent.propTypes = {
+  optionName: PropTypes.string.isRequired,
+  win: PropTypes.bool.isRequired,
+  setOpponent: PropTypes.func.isRequired
+}

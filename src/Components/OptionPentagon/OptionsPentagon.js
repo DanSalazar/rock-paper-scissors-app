@@ -2,6 +2,7 @@ import React from 'react'
 import { PentagonWrapper, Pentagon } from './style'
 import PentagonImage from '../../images/bg-pentagon.svg'
 import Option from '../Option/Option'
+import PropTypes from 'prop-types'
 
 const mapOptions = [
   {
@@ -52,3 +53,8 @@ const OptionPentagon = ({ handleElection, election }) => {
 }
 
 export default OptionPentagon
+
+OptionPentagon.propTypes = {
+  handleElection: PropTypes.func.isRequired,
+  election: PropTypes.string
+}
