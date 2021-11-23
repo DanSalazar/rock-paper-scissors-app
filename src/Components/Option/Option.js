@@ -1,4 +1,3 @@
-import React from 'react'
 import { OptionStyled, OptionBorder, Svg } from './style'
 import spock from '../../images/icon-spock.svg'
 import rock from '../../images/icon-rock.svg'

@@ -1,17 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import { OptionsMatch, OptionMatchWrapper } from './style'
 import Option from '../Option/Option'
 import checkWinner from '../../checkWinner'
 import Result from '../Result/Result'
-import ScoreContext from '../../ScoreContext/ScoreContext'
 import MatchOpponent from './MatchOpponent'
 import PropTypes from 'prop-types'
 
 const SIZES = { D: '200px', M: '100px' }
 
-const Matches = ({ election, returnGame }) => {
-  const { setScore } = useContext(ScoreContext)
-
+const Matches = ({ election, upScore }) => {
   const [finishMatch, setfinishMatch] = useState(false)
   const [win, setWin] = useState(false)
   const [draw, setDraw] = useState(false)
@@ -19,23 +16,23 @@ const Matches = ({ election, returnGame }) => {
   const [opponent, setOpponent] = useState('')
 
   useEffect(() => {
-    // Return winner game
     const winnerGame = checkWinner.filter(item => item.name === election)[0]
 
     if (winnerGame.beats.includes(opponent)) {
       setWin(true)
-      setScore(score => score + 1)
+      upScore('win')
     } else if (opponent === election) {
-      setDraw(true)
+      setDraw('draw')
+      upScore('draw')
     } else if (winnerGame.defeat.includes(opponent)) {
       setWinOpponent(true)
-      setScore(score => score === 0 ? 0 : score - 1)
+      upScore('lose')
     }
 
     return setTimeout(() => {
       setfinishMatch(true)
     }, 2500)
-  }, [election, opponent, setScore])
+  }, [election, opponent])
 
   return (
     <>
@@ -60,7 +57,7 @@ const Matches = ({ election, returnGame }) => {
           <span> The House Picked </span>
         </OptionMatchWrapper>
 
-        {finishMatch && <Result win={win} draw={draw} returnGame={returnGame} />}
+        {finishMatch && <Result win={win} draw={draw}/>}
       </OptionsMatch>
     </>
   )
@@ -70,5 +67,5 @@ export default Matches
 
 Matches.propTypes = {
   election: PropTypes.string.isRequired,
-  returnGame: PropTypes.func.isRequired
+  upScore: PropTypes.func.isRequired
 }

@@ -1,20 +1,21 @@
-import React, { useContext } from 'react'
 import { HeaderLogo, HeaderState, HeaderStyled } from './style'
+import PropTypes from 'prop-types'
 import Logo from '../../images/logo-bonus.svg'
-import ScoreContext from '../../ScoreContext/ScoreContext'
 
-const Header = () => {
-  const { score } = useContext(ScoreContext)
-
+const Header = ({ score }) => {
   return (
     <HeaderStyled>
       <HeaderLogo alt='logo' src={Logo} />
       <HeaderState>
         <p>score</p>
-        <span> {score} </span>
+        <span>{score}</span>
       </HeaderState>
     </HeaderStyled>
   )
+}
+
+Header.propTypes = {
+  score: PropTypes.string
 }
 
 export default Header

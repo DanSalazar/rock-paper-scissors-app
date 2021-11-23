@@ -1,4 +1,3 @@
-import React from 'react'
 import { PentagonWrapper, Pentagon } from './style'
 import PentagonImage from '../../images/bg-pentagon.svg'
 import Option from '../Option/Option'
@@ -34,14 +33,14 @@ const mapOptions = [
   }
 ]
 
-const OptionPentagon = ({ handleElection, election }) => {
+const OptionPentagon = ({ select }) => {
   return (
     <PentagonWrapper>
       <Pentagon src={PentagonImage} />
       {mapOptions.map(option => (
         <Option
           key={option.name}
-          handler={handleElection}
+          handler={select}
           gridRow={option.gridRow}
           gridCol={option.gridCol}
           place={option.place}
@@ -52,9 +51,8 @@ const OptionPentagon = ({ handleElection, election }) => {
   )
 }
 
-export default OptionPentagon
-
 OptionPentagon.propTypes = {
-  handleElection: PropTypes.func.isRequired,
-  election: PropTypes.string
+  select: PropTypes.func.isRequired
 }
+
+export default OptionPentagon

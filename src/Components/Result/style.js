@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Button, show } from '../../Pages/Home/style'
+import { show, Button } from '../styles'
 
 export const ResultContainer = styled.div`
     animation: ${show} 0.20s ease;

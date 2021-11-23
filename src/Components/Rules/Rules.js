@@ -1,17 +1,16 @@
-import React from 'react'
 import { RulesButton, RulesContent, RulesContainer, SvgRules } from './style'
 import imageRules from '../../images/image-rules-bonus.svg'
 import iconClose from '../../images/icon-close.svg'
 import PropTypes from 'prop-types'
 
-const Rules = ({ rulesShow, setRules }) => {
+const Rules = ({ view, setView }) => {
   const rulesOff = () => {
-    setRules(!rulesShow)
+    setView(!view)
   }
 
   return (
     <>
-      {rulesShow &&
+      {view &&
         <RulesContainer>
           <RulesContent>
             <p>Rules</p>
@@ -28,6 +27,6 @@ const Rules = ({ rulesShow, setRules }) => {
 export default Rules
 
 Rules.propTypes = {
-  rulesShow: PropTypes.bool.isRequired,
-  setRules: PropTypes.func.isRequired
+  view: PropTypes.bool.isRequired,
+  setView: PropTypes.func.isRequired
 }

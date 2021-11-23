@@ -1,4 +1,3 @@
-import React from 'react'
 import { ResultContainer, ResultTitle, ButtonResult } from './style'
 import PropTypes from 'prop-types'
 

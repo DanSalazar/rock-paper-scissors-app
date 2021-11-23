@@ -1,23 +1,31 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+  :root {
+    --gradient: radial-gradient(circle, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+    --b-radius: 8px;
+    --red: hsl(349, 70%, 56%);
+    --white: #ccc;
+    --transition-mode: 0.4s ease;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    body {
-        font-family: 'Barlow Semi Condensed', sans-serif;
-        background: radial-gradient(circle, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
-        font-size: 16px;
-        width: 100%;
-    }
+  body {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    background: var(--gradient);
+    font-size: 16px;
+    width: 100%;
+  }
 
-    img {
-        max-width: 100%;
-        height: auto;
-    }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 `
 
 export default GlobalStyles

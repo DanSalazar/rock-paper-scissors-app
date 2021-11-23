@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { show } from '../../Pages/Home/style'
+import { show } from '../styles'
 
 export const OptionsMatch = styled.div`
     display: grid;
@@ -7,7 +7,7 @@ export const OptionsMatch = styled.div`
     grid-template-rows: repeat(2, 1fr);
     width: 100%;
     height: auto;
-    animation: ${show} 0.3s ease;
+    animation: ${show} var(--transition-mode);
 
     @media screen and (min-width: 1024px){
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

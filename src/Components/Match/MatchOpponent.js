@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { OptionOverlay } from './style'
 import Option from '../Option/Option'
 import PropTypes from 'prop-types'

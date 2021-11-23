@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { show } from '../../Pages/Home/style'
+import { show } from '../styles'
 
 export const RulesContainer = styled.div`
     background: #fff;
