@@ -1,18 +1,26 @@
-import React, { useState } from 'react'
-import GlobalStyles from './GlobalStyles'
-import Home from './Pages/Home/Home'
-import ScoreContext from './ScoreContext/ScoreContext'
+import {
+  BrowserRouter,
+  Route,
+  Routes
+} from 'react-router-dom'
+import SingleMatchProvider from './contexts/SingleMatch'
+import Home from './Pages/Home'
+import NewRoom from './Pages/NewRoom'
+import MatchPage from './Pages/Match'
 
 function App () {
-  const [score, setScore] = useState(0)
-
   return (
-    <>
-      <GlobalStyles />
-      <ScoreContext.Provider value={{ score, setScore }}>
-        <Home />
-      </ScoreContext.Provider>
-    </>
+    <BrowserRouter>
+      <SingleMatchProvider>
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/match' element={<MatchPage/>}/>
+        </Routes>
+      </SingleMatchProvider>
+      <Routes>
+        <Route path='/room' element={<NewRoom/>}/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
