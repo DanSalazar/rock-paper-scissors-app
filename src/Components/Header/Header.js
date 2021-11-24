@@ -6,10 +6,11 @@ const Header = ({ score }) => {
   return (
     <HeaderStyled>
       <HeaderLogo alt='logo' src={Logo} />
-      <HeaderState>
-        <p>score</p>
-        <span>{score}</span>
-      </HeaderState>
+      {score &&
+        <HeaderState>
+          <p>score</p>
+          <span>{score}</span>
+        </HeaderState>}
     </HeaderStyled>
   )
 }
