@@ -42,3 +42,8 @@ export const InputController = styled.input`
     border: 2px solid var(--red);
   }
 `
+
+export const Error = styled.span`
+  font-weight: 600;
+  color: var(--red);
+`

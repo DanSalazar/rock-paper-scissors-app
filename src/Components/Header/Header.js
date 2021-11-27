@@ -16,7 +16,7 @@ const Header = ({ score }) => {
 }
 
 Header.propTypes = {
-  score: PropTypes.string
+  score: PropTypes.number
 }
 
 export default Header
