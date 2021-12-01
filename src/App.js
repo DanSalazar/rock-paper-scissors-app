@@ -7,26 +7,32 @@ import SingleMatchProvider from './contexts/SingleMatch'
 import RoomMatchProvider from './contexts/RoomMatch'
 import SocketProvider from './contexts/SocketContext'
 import Home from './Pages/Home'
-import NewRoom from './Pages/NewRoom'
-import RoomMatch from './Pages/RoomMatch'
 import MatchPage from './Pages/Match'
+import NewRoom from './Pages/NewRoom'
+import RoomMatchPage from './Pages/RoomMatch'
 
 function App () {
   return (
     <BrowserRouter>
-      <SingleMatchProvider>
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='match' element={<MatchPage/>}/>
-        </Routes>
-      </SingleMatchProvider>
       <SocketProvider>
-        <RoomMatchProvider>
+        <SingleMatchProvider>
           <Routes>
-            <Route path='room' element={<NewRoom/>}/>
-            <Route path='room/:id' element={<RoomMatch/>}/>
+            <Route path='/'>
+              <Route index element={<Home/>} />
+              <Route path='match' element={<MatchPage/>} />
+              <Route path='room' element={
+                <RoomMatchProvider>
+                  <NewRoom/>
+                </RoomMatchProvider>
+              } />
+              <Route path='room/:id' element={
+                <RoomMatchProvider>
+                  <RoomMatchPage/>
+                </RoomMatchProvider>
+              } />
+            </Route>
           </Routes>
-        </RoomMatchProvider>
+        </SingleMatchProvider>
       </SocketProvider>
     </BrowserRouter>
   )
