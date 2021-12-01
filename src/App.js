@@ -17,14 +17,14 @@ function App () {
       <SingleMatchProvider>
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/match' element={<MatchPage/>}/>
+          <Route path='match' element={<MatchPage/>}/>
         </Routes>
       </SingleMatchProvider>
       <SocketProvider>
         <RoomMatchProvider>
           <Routes>
-            <Route path='/room' element={<NewRoom/>}/>
-            <Route path='/room/:id' element={<RoomMatch/>}/>
+            <Route path='room' element={<NewRoom/>}/>
+            <Route path='room/:id' element={<RoomMatch/>}/>
           </Routes>
         </RoomMatchProvider>
       </SocketProvider>

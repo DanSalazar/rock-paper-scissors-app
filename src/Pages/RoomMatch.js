@@ -13,26 +13,41 @@ const RoomMatchPage = () => {
   const [view, setView] = useState(false)
   const [match, setMatch] = useState(false)
   const navigate = useNavigate()
-  const store = useContext(RoomMatch)
+  const roomContext = useContext(RoomMatch)
   const socket = useSocket()
 
   useEffect(() => {
-    if (store.existGuest) setView(true)
+    if (roomContext.guest) setView(true)
 
     socket.on('player-joined', player => {
-      store.playerJoined(player)
+      roomContext.playerJoined(player)
       setView(true)
     })
 
     socket.on('op-selection', election => {
-      console.log(election)
-      store.setOpElection(election)
+      roomContext.setOpElection(election)
     })
+
+    socket.on('player-leave', () => {
+      roomContext.playerLeaves()
+    })
+
+    return () => {
+      const { user } = roomContext
+      roomContext.cleanRoom()
+      socket.emit('leave-room', { room: roomContext.room.name, user })
+      return socket.close()
+    }
   }, [])
 
+  const viewOfMatch = () => {
+    setMatch(!match)
+    roomContext.cleanElections()
+  }
+
   const handleElection = (value) => {
-    store.setElection(value)
-    socket.emit('election', { room: store.room.room, value })
+    roomContext.setElection(value)
+    socket.emit('election', { room: roomContext.room.name, value })
     setMatch(true)
   }
 
@@ -41,7 +56,7 @@ const RoomMatchPage = () => {
       <Header/>
       {view
         ? match
-          ? <RoomMatches election={store.election} opponent={store.opElection} />
+          ? <RoomMatches election={roomContext.election} opponent={roomContext.opElection} view={viewOfMatch} />
           : <OptionPentagon select={handleElection}/>
         : <WaitingText>Waiting for guest</WaitingText>
       }

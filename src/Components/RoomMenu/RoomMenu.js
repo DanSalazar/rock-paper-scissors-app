@@ -11,31 +11,41 @@ const RoomMenu = () => {
   const navigate = useNavigate()
   const socket = useSocket()
   const username = useField('text')
-  const room = useField('text')
+  const roomName = useField('text')
   const roomPass = useField('text')
   const [errors, setErrors] = useState({ error: false, message: '' })
   const [status, setStatus] = useState('')
 
   useEffect(() => {
     socket.on('new-room-created', room => {
-      roomContext.setRooms(room)
-      navigate(`${room.room}`)
+      roomContext.setRoom(room)
+      navigate(room.name)
     })
 
     socket.on('joined', room => {
-      roomContext.setRoomTo(room)
-      navigate(`${room.room}`)
+      roomContext.setJoinedRoom(room)
+      navigate(room.name)
     })
   }, [])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault()
 
     if (status === 'Create') {
-      socket.emit('new-room', { room: room.value, host: username.value, password: roomPass.value })
-    } else {
-      socket.emit('join-room', { room: room.value, guest: username.value, password: roomPass.value })
+      return socket.emit('new-room', {
+        room: roomName.value,
+        host: username.value,
+        password: roomPass.value
+      })
+    }
+
+    if (status === 'Join') {
       setErrors('true')
+      return socket.emit('join-room', {
+        room: roomName.value,
+        guest: username.value,
+        password: roomPass.value
+      })
     }
   }
 
@@ -44,7 +54,7 @@ const RoomMenu = () => {
       <Label>Name</Label>
       <InputController {...username}/>
       <Label>Room Name</Label>
-      <InputController {...room}/>
+      <InputController {...roomName}/>
       <Label>Password</Label>
       <InputController {...roomPass} />
       <Error>{errors.error && errors.message}</Error>
