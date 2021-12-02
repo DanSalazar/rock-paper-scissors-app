@@ -9,7 +9,7 @@ export default function SingleMatchProvider ({ children }) {
 
   const upScore = (mode) => {
     if (mode === 'win') setScore(score + 1)
-    else if (mode === 'lose') setScore(score - 1)
+    if (mode === 'lose' && score > 0) setScore(score - 1)
   }
 
   return (

@@ -11,7 +11,7 @@ export const show = keyframes`
 `
 
 export const Button = styled.button`
-  padding: 0.625em 0;
+  padding: 0.75em 0;
   width: 100px;
   border: 2px solid var(--white);
   color: #fff;

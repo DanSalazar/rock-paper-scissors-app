@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { OptionsMatch, OptionMatchWrapper } from './style'
+import { useNavigate } from 'react-router-dom'
 import Option from '../Option/Option'
-import checkWinner from '../../checkWinner'
+import useMatchWinner from '../../hooks/useMatchWinner'
 import Result from '../Result/Result'
 import MatchOpponent from './MatchOpponent'
 import PropTypes from 'prop-types'
@@ -9,57 +10,50 @@ import PropTypes from 'prop-types'
 const SIZES = { D: '200px', M: '100px' }
 
 const Matches = ({ election, upScore }) => {
-  const [finishMatch, setfinishMatch] = useState(false)
-  const [win, setWin] = useState(false)
-  const [draw, setDraw] = useState(false)
-  const [winOpponent, setWinOpponent] = useState(false)
+  const [finishMatch, setFinishMatch] = useState(false)
   const [opponent, setOpponent] = useState('')
+  const navigate = useNavigate()
+  const { win, draw, lose } = useMatchWinner(election, opponent)
 
   useEffect(() => {
-    const winnerGame = checkWinner.filter(item => item.name === election)[0]
+    let finish
 
-    if (winnerGame.beats.includes(opponent)) {
-      setWin(true)
-      upScore('win')
-    } else if (opponent === election) {
-      setDraw('draw')
-      upScore('draw')
-    } else if (winnerGame.defeat.includes(opponent)) {
-      setWinOpponent(true)
-      upScore('lose')
-    }
+    if (win) upScore('win')
+    else if (lose) upScore('lose')
 
-    return setTimeout(() => {
-      setfinishMatch(true)
-    }, 2500)
-  }, [election, opponent])
+    if (opponent) finish = setTimeout(() => setFinishMatch(true), 1500)
+
+    return () => clearTimeout(finish)
+  }, [opponent, win, draw, lose])
+
+  const playAgain = () => {
+    navigate('/')
+  }
 
   return (
-    <>
-      <OptionsMatch>
-        <OptionMatchWrapper>
-          {election &&
-            <Option
-              padding='2.25em' win={win}
-              optionName={election}
-              sizeD={SIZES.D}
-              sizeM={SIZES.M}
-            />}
-          <span>You Picked</span>
-        </OptionMatchWrapper>
+    <OptionsMatch>
+      <OptionMatchWrapper>
+        {election &&
+          <Option
+            padding='2.25em' win={win}
+            optionName={election}
+            sizeD={SIZES.D}
+            sizeM={SIZES.M}
+          />}
+        <span>You Picked</span>
+      </OptionMatchWrapper>
 
-        <OptionMatchWrapper>
-          <MatchOpponent
-            optionName={opponent}
-            win={winOpponent}
-            setOpponent={setOpponent}
-          />
-          <span> The House Picked </span>
-        </OptionMatchWrapper>
+      <OptionMatchWrapper>
+        <MatchOpponent
+          opponent={opponent}
+          win={lose}
+          setOpponent={setOpponent}
+        />
+        <span> The House Picked </span>
+      </OptionMatchWrapper>
 
-        {finishMatch && <Result win={win} draw={draw}/>}
-      </OptionsMatch>
-    </>
+      {finishMatch && <Result win={win} draw={draw} view={playAgain}/>}
+    </OptionsMatch>
   )
 }
 

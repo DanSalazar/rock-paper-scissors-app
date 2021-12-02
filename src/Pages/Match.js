@@ -9,7 +9,7 @@ const MatchPage = () => {
 
   return (
     <Layout>
-      <Header score={score}/>
+      <Header score={score} viewScore={true}/>
       <Matches election={currentElection} upScore={upScore}/>
     </Layout>
   )

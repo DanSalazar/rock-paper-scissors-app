@@ -26,4 +26,5 @@ export const ButtonResult = styled(Button)`
     background: #fff;
     margin: 0.5em 0;
     color: hsl(214, 47%, 23%);
+    border: none;
 `
