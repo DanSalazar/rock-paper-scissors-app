@@ -2,21 +2,22 @@ import { HeaderLogo, HeaderState, HeaderStyled } from './style'
 import PropTypes from 'prop-types'
 import Logo from '../../images/logo-bonus.svg'
 
-const Header = ({ score }) => {
+const Header = ({ score, viewScore }) => {
   return (
     <HeaderStyled>
       <HeaderLogo alt='logo' src={Logo} />
-      {score &&
-        <HeaderState>
-          <p>score</p>
-          <span>{score}</span>
-        </HeaderState>}
+      {viewScore &&
+      <HeaderState>
+        <p>SCORE</p>
+        <span>{score}</span>
+      </HeaderState>}
     </HeaderStyled>
   )
 }
 
 Header.propTypes = {
-  score: PropTypes.number
+  score: PropTypes.number,
+  viewScore: PropTypes.bool
 }
 
 export default Header
