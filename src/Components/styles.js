@@ -12,7 +12,7 @@ export const show = keyframes`
 
 export const Button = styled.button`
   padding: 0.625em 0;
-  width: 130px;
+  width: 100px;
   border: 2px solid var(--white);
   color: #fff;
   cursor: pointer;

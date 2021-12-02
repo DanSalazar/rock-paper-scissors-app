@@ -33,7 +33,7 @@ const mapOptions = [
   }
 ]
 
-const OptionPentagon = ({ select }) => {
+const OptionPentagon = ({ select, election }) => {
   return (
     <PentagonWrapper>
       <Pentagon src={PentagonImage} />
@@ -52,7 +52,8 @@ const OptionPentagon = ({ select }) => {
 }
 
 OptionPentagon.propTypes = {
-  select: PropTypes.func.isRequired
+  select: PropTypes.func.isRequired,
+  election: PropTypes.string
 }
 
 export default OptionPentagon

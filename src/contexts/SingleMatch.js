@@ -20,5 +20,5 @@ export default function SingleMatchProvider ({ children }) {
 }
 
 SingleMatchProvider.propTypes = {
-  children: PropTypes.element
+  children: PropTypes.node
 }
