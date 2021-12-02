@@ -35,8 +35,7 @@ const RoomMatchPage = () => {
     return () => {
       const { user } = roomContext
       roomContext.cleanRoom()
-      socket.emit('leave-room', { room: roomContext.room.name, user })
-      return socket.close()
+      return socket.emit('leave-room', { room: roomContext.room.name, user })
     }
   }, [])
 
