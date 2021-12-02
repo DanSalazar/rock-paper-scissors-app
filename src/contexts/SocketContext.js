@@ -9,7 +9,7 @@ export default function SocketProvider ({ children }) {
 
   useEffect(() => {
     try {
-      const socket = io('http://localhost:3001')
+      const socket = io(process.env.SERVER)
       setConnection(socket)
     } catch (e) {
       console.log(e)
