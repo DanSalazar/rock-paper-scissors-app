@@ -14,6 +14,10 @@ export default function SocketProvider ({ children }) {
     } catch (e) {
       console.log(e)
     }
+
+    return () => {
+      if (connection !== null) return connection.close()
+    }
   }, [])
 
   return <SocketContext.Provider value={connection}>

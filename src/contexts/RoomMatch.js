@@ -44,7 +44,7 @@ export default function RoomMatchProvider ({ children }) {
   const cleanRoom = () => {
     setUser('')
     setGuest('')
-    setScoreTo({ host: 0, guest: 0 })
+    setScore({ host: 0, guest: 0 })
     cleanElections()
     setRoom({})
   }

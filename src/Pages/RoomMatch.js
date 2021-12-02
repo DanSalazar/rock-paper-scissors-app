@@ -30,12 +30,13 @@ const RoomMatchPage = () => {
 
     socket.on('player-leave', () => {
       roomContext.playerLeaves()
+      setView(false)
+      setMatch(false)
     })
 
     return () => {
-      const { user } = roomContext
       roomContext.cleanRoom()
-      return socket.emit('leave-room', { room: roomContext.room.name, user })
+      socket.emit('leave-room')
     }
   }, [])
 
@@ -46,7 +47,7 @@ const RoomMatchPage = () => {
 
   const handleElection = (value) => {
     roomContext.setElection(value)
-    socket.emit('election', { room: roomContext.room.name, value })
+    socket.emit('election', { value })
     setMatch(true)
   }
 
