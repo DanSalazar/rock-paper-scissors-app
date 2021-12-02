@@ -17,6 +17,14 @@ const RoomMenu = () => {
   const [status, setStatus] = useState('')
 
   useEffect(() => {
+    // Validations from server
+    socket.on('room-exist', setErrors)
+    socket.on('password-too-short', setErrors)
+    socket.on('room-too-short', setErrors)
+    socket.on('room-not-exist', setErrors)
+    socket.on('incorrect-password', setErrors)
+    socket.on('full-room', setErrors)
+
     socket.on('new-room-created', room => {
       roomContext.setRoom(room)
       navigate(room.name)
