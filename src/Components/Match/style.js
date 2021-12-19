@@ -80,8 +80,8 @@ export const OptionOverlay = styled.div`
       padding: 2.25em;
 
       div {
-        width: 220px;
-        height: 220px; 
+        width: ${props => props.sizeD || '110px'};
+        height: ${props => props.sizeD || '110px'};
       }
   }
 `

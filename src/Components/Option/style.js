@@ -34,13 +34,13 @@ export const OptionBorder = styled.div`
     }
     
     @media screen and (min-width: 1024px){
-        padding: ${props => props.padding ? props.padding : '1em'};
+        padding: ${props => props.padding || '1em'};
     }
 `
 
 export const OptionStyled = styled.div`
-    width: ${props => props.sizeM ? props.sizeM : '75px'};
-    height: ${props => props.sizeM ? props.sizeM : '75px'};
+    width: ${props => props.sizeM || '75px'};
+    height: ${props => props.sizeM || '75px'};
     background: #fff;
     display: flex;
     justify-content: center;
@@ -49,13 +49,13 @@ export const OptionStyled = styled.div`
     box-shadow: inset 0px 6px 4px rgba(0,0,0, 0.15);
 
     @media screen and (max-width: 320px){
-        width: 65px;
-        height: 65px;
+      width: 65px;
+      height: 65px;
     }
 
     @media screen and (min-width: 1024px){
-        width: ${props => props.sizeD ? props.sizeD : '110px'};
-        height: ${props => props.sizeD ? props.sizeD : '110px'};
+      width: ${props => props.sizeD || '110px'};
+      height: ${props => props.sizeD || '110px'};
     }
 `
 

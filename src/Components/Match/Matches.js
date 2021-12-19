@@ -7,6 +7,7 @@ import Result from '../Result/Result'
 import MatchOpponent from './MatchOpponent'
 import PropTypes from 'prop-types'
 
+// Set sizes of option in match view
 const SIZES = { D: '200px', M: '100px' }
 
 const Matches = ({ election, upScore }) => {
