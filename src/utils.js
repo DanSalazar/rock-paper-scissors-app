@@ -1,4 +1,4 @@
-const checkWinner = [
+const gameOptions = [
   {
     name: 'scissors',
     beats: ['paper', 'lizard'],
@@ -26,4 +26,9 @@ const checkWinner = [
   }
 ]
 
-export default checkWinner
+export const getWinner = (election, opponent) => {
+  const winnerGame = gameOptions.filter(option => option.name === election)[0]
+  if (winnerGame.beats.indexOf(opponent) > -1) return true
+  if (opponent === election) return 'draw'
+  if (winnerGame.defeat.indexOf(election) > -1) return false
+}

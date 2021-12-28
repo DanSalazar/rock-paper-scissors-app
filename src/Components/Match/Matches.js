@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { OptionsMatch, OptionMatchWrapper } from './style'
 import { useNavigate } from 'react-router-dom'
 import Option from '../Option/Option'
-import useMatchWinner from '../../hooks/useMatchWinner'
+import { getWinner } from '../../utils'
 import Result from '../Result/Result'
 import MatchOpponent from './MatchOpponent'
 import PropTypes from 'prop-types'
@@ -13,19 +13,22 @@ const SIZES = { D: '200px', M: '100px' }
 const Matches = ({ election, upScore }) => {
   const [finishMatch, setFinishMatch] = useState(false)
   const [opponent, setOpponent] = useState('')
+  const resultOfMatch = useMemo(() => getWinner(election, opponent), [opponent])
   const navigate = useNavigate()
-  const { win, draw, lose } = useMatchWinner(election, opponent)
+  const win = resultOfMatch && resultOfMatch !== 'draw'
+  const lose = !resultOfMatch && resultOfMatch !== 'draw'
 
   useEffect(() => {
     let finish
 
-    if (win) upScore('win')
-    else if (lose) upScore('lose')
-
-    if (opponent) finish = setTimeout(() => setFinishMatch(true), 1500)
-
+    if (opponent) {
+      finish = setTimeout(() => setFinishMatch(true), 1500)
+      if (win) upScore('win')
+      if (lose) upScore('lose')
+    }
+  
     return () => clearTimeout(finish)
-  }, [opponent, win, draw, lose])
+  }, [opponent, resultOfMatch])
 
   const playAgain = () => {
     navigate('/')
@@ -53,7 +56,7 @@ const Matches = ({ election, upScore }) => {
         <span> The House Picked </span>
       </OptionMatchWrapper>
 
-      {finishMatch && <Result win={win} draw={draw} view={playAgain}/>}
+      {finishMatch && <Result win={resultOfMatch} draw={resultOfMatch === 'draw'} view={playAgain}/>}
     </OptionsMatch>
   )
 }
