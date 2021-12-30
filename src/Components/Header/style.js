@@ -40,3 +40,14 @@ export const HeaderState = styled.div`
     max-width: 50%;
   }
 `
+
+export const HeaderRoomState = styled(HeaderState)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: auto;
+
+  div {
+    width: 5.25em;
+  }
+`

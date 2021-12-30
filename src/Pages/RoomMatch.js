@@ -3,22 +3,27 @@ import { useNavigate } from 'react-router-dom'
 import { WaitingText } from './styles'
 import { Button } from '../Components/styles'
 import { RoomMatch } from '../contexts/RoomMatch'
+import toast, { Toaster } from 'react-hot-toast'
 import useSocket from '../hooks/useSocket'
 import Layout from './Layout.js'
-import Header from '../Components/Header/Header'
+import HeaderRoom from '../Components/Header/HeaderRoom'
 import OptionPentagon from '../Components/OptionPentagon/OptionsPentagon'
 import RoomMatches from '../Components/Match/RoomMatches'
 
 const RoomMatchPage = () => {
-  const [view, setView] = useState(false)
+  const roomContext = useContext(RoomMatch)
+  const [view, setView] = useState(roomContext.room.players[1])
   const [match, setMatch] = useState(false)
   const navigate = useNavigate()
-  const roomContext = useContext(RoomMatch)
   const socket = useSocket()
 
-  useEffect(() => {
-    if (roomContext.guest) setView(true)
+  const setViews = () => {
+    setMatch(false)
+    setView(false)
+    roomContext.cleanScore()
+  }
 
+  useEffect(() => {
     socket.on('player-joined', player => {
       roomContext.playerJoined(player)
       setView(true)
@@ -28,21 +33,30 @@ const RoomMatchPage = () => {
       roomContext.setOpElection(election)
     })
 
-    socket.on('player-leave', () => {
-      roomContext.playerLeaves()
-      setView(false)
+    socket.on('play-again', () => {
       setMatch(false)
+      roomContext.cleanElections()
+      toast(`New match`)
     })
 
-    return () => {
-      roomContext.cleanRoom()
-      socket.emit('leave-room')
-    }
+    socket.on('player-leave', (user) => {
+      roomContext.playerLeaves()
+      setViews()
+    })
+
+    return () => socket.off('off')
   }, [])
 
-  const viewOfMatch = () => {
+  const playAgain = () => {
     setMatch(!match)
+    socket.emit('play-again')
     roomContext.cleanElections()
+  }
+
+  const handleLeaveOfRoom = () => {
+    navigate('/room')
+    roomContext.cleanRoom()
+    socket.emit('leave-room')
   }
 
   const handleElection = (value) => {
@@ -52,14 +66,15 @@ const RoomMatchPage = () => {
   }
 
   return (
-    <Layout buttons={<Button onClick={() => navigate('/room')}>Leave</Button>}>
-      <Header/>
+    <Layout buttons={<Button onClick={handleLeaveOfRoom}>Leave</Button>}>
+      <HeaderRoom/>
       {view
         ? match
-          ? <RoomMatches election={roomContext.election} opponent={roomContext.opElection} view={viewOfMatch} />
+          ? <RoomMatches election={roomContext.election} opponent={roomContext.opElection} playAgain={playAgain} />
           : <OptionPentagon select={handleElection}/>
         : <WaitingText>Waiting for guest</WaitingText>
       }
+      <Toaster position='top-right' />
     </Layout>
   )
 }

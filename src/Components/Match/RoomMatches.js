@@ -1,26 +1,34 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext, useMemo } from 'react'
 import { OptionsMatch, OptionMatchWrapper } from './style'
+import { RoomMatch } from '../../contexts/RoomMatch'
+import { getWinner } from '../../utils'
 import Option from '../Option/Option'
 import MatchOpponent from './MatchOpponent'
 import Result from '../Result/Result'
 import PropTypes from 'prop-types'
-import useMatchWinner from '../../hooks/useMatchWinner'
 
 const SIZES = { D: '200px', M: '100px' }
 
-const Matches = ({ election, opponent, view }) => {
-  const [finish, setFinish] = useState(false)
-  const { win, draw, lose } = useMatchWinner(election, opponent)
+const Matches = ({ election, opponent, playAgain }) => {
+  const [finishMatch, setFinishMatch] = useState(false)
+  const roomContext = useContext(RoomMatch)
+  const resultOfMatch = useMemo(() => getWinner(election, opponent), [opponent])
+  const win = resultOfMatch && resultOfMatch !== 'draw'
+  const lose = !resultOfMatch && resultOfMatch !== 'draw'
 
   useEffect(() => {
-    let finishMatch
+    let finishTimeout
 
-    if (opponent) finishMatch = setTimeout(() => setFinish(true), 1500)
+    if (opponent) {
+      finishTimeout = setTimeout(() => setFinishMatch(true), 1000)
+      if (win) roomContext.setScoreTo('host')
+      if (lose) roomContext.setScoreTo('guest')
+    }
 
-    return () => clearTimeout(finishMatch)
+    return () => clearTimeout(finishTimeout)
   }, [opponent])
 
-  const text = opponent ? 'The guest picked' : 'Waiting for guest'
+  const guestPick = opponent ? 'The guest picked' : 'Waiting for guest'
 
   return (
     <>
@@ -38,9 +46,9 @@ const Matches = ({ election, opponent, view }) => {
         </OptionMatchWrapper>
          <OptionMatchWrapper>
           <MatchOpponent opponent={opponent} win={lose} />
-          <span>{text}</span>
+          <span>{guestPick}</span>
         </OptionMatchWrapper>
-        {finish && <Result win={win} draw={draw} view={view} />}
+        {finishMatch && <Result win={win} draw={resultOfMatch === 'draw'} playAgain={playAgain} />}
       </OptionsMatch>
     </>
   )
@@ -51,5 +59,5 @@ export default Matches
 Matches.propTypes = {
   election: PropTypes.string.isRequired,
   opponent: PropTypes.string,
-  view: PropTypes.func
+  playAgain: PropTypes.func
 }

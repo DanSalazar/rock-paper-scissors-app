@@ -5,31 +5,26 @@ export const RoomMatch = createContext({})
 
 export default function RoomMatchProvider ({ children }) {
   const [score, setScore] = useState({ host: 0, guest: 0 })
-  const [user, setUser] = useState('')
-  const [guest, setGuest] = useState('')
   const [election, setElection] = useState('')
   const [opElection, setOpElection] = useState('')
   const [room, setCurrentRoom] = useState({})
 
   const setRoom = (room) => {
     if (room.name) {
-      setUser(room.players[0])
       setCurrentRoom(room)
     }
   }
 
   const playerJoined = (player) => {
-    setGuest(player)
+    setCurrentRoom({...room, players: room.players.concat(player)})
   }
 
   const setJoinedRoom = room => {
-    setGuest(room.players[0])
-    setUser(room.players[1])
     setCurrentRoom(room)
   }
 
   const playerLeaves = () => {
-    setGuest('')
+    setCurrentRoom({...room, players: room.players.slice(0, 1)})
   }
 
   const cleanElections = () => {
@@ -38,12 +33,12 @@ export default function RoomMatchProvider ({ children }) {
   }
 
   const setScoreTo = player => {
-    setScore({ ...score, player: player + 1 })
+    setScore({ ...score, [player]: score[player] + 1 })
   }
 
+  const cleanScore = () => setScore({ host: 0, guest: 0 })
+
   const cleanRoom = () => {
-    setUser('')
-    setGuest('')
     setScore({ host: 0, guest: 0 })
     cleanElections()
     setRoom({})
@@ -55,16 +50,15 @@ export default function RoomMatchProvider ({ children }) {
         score,
         setScoreTo,
         election,
-        user,
         setElection,
         opElection,
         setOpElection,
-        guest,
         playerJoined,
         room,
         playerLeaves,
         setRoom,
         cleanRoom,
+        cleanScore,
         setJoinedRoom,
         cleanElections
       }}>

@@ -34,6 +34,8 @@ const RoomMenu = () => {
       roomContext.setJoinedRoom(room)
       navigate(room.name)
     })
+
+    return () => socket.off('off')
   }, [])
 
   const handleSubmit = e => {
