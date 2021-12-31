@@ -12,7 +12,7 @@ import RoomMatches from '../Components/Match/RoomMatches'
 
 const RoomMatchPage = () => {
   const roomContext = useContext(RoomMatch)
-  const [view, setView] = useState(roomContext.room.players[1])
+  const [view, setView] = useState(roomContext.room.players[1] || false)
   const [match, setMatch] = useState(false)
   const navigate = useNavigate()
   const socket = useSocket()
@@ -36,7 +36,7 @@ const RoomMatchPage = () => {
     socket.on('play-again', () => {
       setMatch(false)
       roomContext.cleanElections()
-      toast(`New match`)
+      toast(`Guest request a new game`, { icon: '⚔️' })
     })
 
     socket.on('player-leave', (user) => {
