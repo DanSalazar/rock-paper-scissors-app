@@ -4,19 +4,15 @@ import iconClose from '../../images/icon-close.svg'
 import PropTypes from 'prop-types'
 
 const Rules = ({ view, setView }) => {
-  const rulesOff = () => {
-    setView(!view)
-  }
-
   return (
     <>
       {view &&
         <RulesContainer>
           <RulesContent>
             <p>Rules</p>
-            <SvgRules src={imageRules} alt='image-rules' />
-            <RulesButton onClick={rulesOff}>
-              <img src={iconClose} alt='icon' />
+            <SvgRules src={imageRules} alt='Rules of Game' />
+            <RulesButton onClick={() => setView(false)}>
+              <img src={iconClose} alt='Close' />
             </RulesButton>
           </RulesContent>
         </RulesContainer>}

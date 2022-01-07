@@ -12,7 +12,7 @@ const Layout = ({ children, buttons }) => {
       {children}
       <ButtonsWrapper>
         {buttons}
-        <Button onClick={setViewRules}>Rules</Button>
+        <Button onClick={() => setViewRules(!viewRules)}>Rules</Button>
       </ButtonsWrapper>
       <Rules view={viewRules} setView={setViewRules}/>
     </AppContainer>
