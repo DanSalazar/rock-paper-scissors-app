@@ -4,9 +4,7 @@ import PropTypes from 'prop-types'
 const Result = ({ win, draw, playAgain }) => {
   return (
     <ResultContainer>
-      <ResultTitle>
-        {draw ? 'Draw' : win ? 'You Win' : 'You lose'}
-      </ResultTitle>
+      <ResultTitle>{draw ? 'Draw' : win ? 'You Win' : 'You lose'}</ResultTitle>
       <ButtonResult width='100%' onClick={playAgain}>
         Play Again
       </ButtonResult>

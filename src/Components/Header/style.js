@@ -10,7 +10,7 @@ export const HeaderStyled = styled.div`
   height: auto;
   padding: 1.25em;
 
-  @media screen and (min-width:1024px){
+  @media screen and (min-width: 1024px) {
     max-width: 60%;
   }
 `
@@ -36,7 +36,7 @@ export const HeaderState = styled.div`
     color: hsl(229, 25%, 31%);
   }
 
-  @media screen and (min-width:1024px){
+  @media screen and (min-width: 1024px) {
     max-width: 50%;
   }
 `

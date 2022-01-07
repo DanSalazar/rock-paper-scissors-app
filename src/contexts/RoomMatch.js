@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 export const RoomMatch = createContext({})
 
-export default function RoomMatchProvider ({ children }) {
+export default function RoomMatchProvider({ children }) {
   const [score, setScore] = useState({ host: 0, guest: 0 })
   const [election, setElection] = useState('')
   const [opElection, setOpElection] = useState('')
@@ -16,15 +16,15 @@ export default function RoomMatchProvider ({ children }) {
   }
 
   const playerJoined = (player) => {
-    setCurrentRoom({...room, players: room.players.concat(player)})
+    setCurrentRoom({ ...room, players: room.players.concat(player) })
   }
 
-  const setJoinedRoom = room => {
-    setCurrentRoom(room)
+  const setJoinedRoom = (room) => {
+    setCurrentRoom({ ...room, players: [room.players[1], room.players[0]] })
   }
 
   const playerLeaves = () => {
-    setCurrentRoom({...room, players: room.players.slice(0, 1)})
+    setCurrentRoom({ ...room, players: room.players.slice(0, 1) })
   }
 
   const cleanElections = () => {
@@ -32,16 +32,16 @@ export default function RoomMatchProvider ({ children }) {
     setOpElection('')
   }
 
-  const setScoreTo = player => {
+  const setScoreTo = (player) => {
     setScore({ ...score, [player]: score[player] + 1 })
   }
 
   const cleanScore = () => setScore({ host: 0, guest: 0 })
 
   const cleanRoom = () => {
-    setScore({ host: 0, guest: 0 })
+    cleanScore()
     cleanElections()
-    setRoom({})
+    setCurrentRoom({})
   }
 
   return (

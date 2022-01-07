@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 export const SingleMatch = createContext({})
 
-export default function SingleMatchProvider ({ children }) {
+export default function SingleMatchProvider({ children }) {
   const [score, setScore] = useState(0)
   const [currentElection, setElection] = useState('')
 
@@ -13,7 +13,8 @@ export default function SingleMatchProvider ({ children }) {
   }
 
   return (
-    <SingleMatch.Provider value={{ score, upScore, currentElection, setElection }}>
+    <SingleMatch.Provider
+      value={{ score, upScore, currentElection, setElection }}>
       {children}
     </SingleMatch.Provider>
   )

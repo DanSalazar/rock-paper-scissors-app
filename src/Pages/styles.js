@@ -10,7 +10,7 @@ export const AppContainer = styled.div`
   align-items: center;
   margin: auto;
 
-  @media screen and (min-width: 1440px){
+  @media screen and (min-width: 1440px) {
     width: 100%;
     padding: 2.25em 3em;
   }

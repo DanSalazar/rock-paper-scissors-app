@@ -23,12 +23,12 @@ export const OptionsMatch = styled.div`
   height: auto;
   animation: ${show} var(--transition-mode);
 
-  @media screen and (min-width: 1024px){
+  @media screen and (min-width: 1024px) {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     grid-template-rows: repeat(1, 1fr);
   }
 
-  @media screen and (min-width: 1440px){
+  @media screen and (min-width: 1440px) {
     width: 70%;
   }
 `
@@ -46,12 +46,12 @@ export const OptionMatchWrapper = styled.div`
     font-size: 0.875em;
   }
 
-  @media screen and (min-width: 1024px){
+  @media screen and (min-width: 1024px) {
     flex-direction: column-reverse;
 
     span {
-        font-size: 1.25em;
-        margin: 0 0 2em 0;
+      font-size: 1.25em;
+      margin: 0 0 2em 0;
     }
   }
 `
@@ -64,10 +64,10 @@ export const OptionOverlay = styled.div`
 
   div {
     width: 100px;
-    height: 100px; 
+    height: 100px;
   }
 
-  @media screen and (max-width: 320px){
+  @media screen and (max-width: 320px) {
     padding: 0.6em;
 
     div {
@@ -76,12 +76,12 @@ export const OptionOverlay = styled.div`
     }
   }
 
-  @media screen and (min-width: 1024px){
-      padding: 2.25em;
+  @media screen and (min-width: 1024px) {
+    padding: 2.25em;
 
-      div {
-        width: ${props => props.sizeD || '110px'};
-        height: ${props => props.sizeD || '110px'};
-      }
+    div {
+      width: ${(props) => props.sizeD || '110px'};
+      height: ${(props) => props.sizeD || '110px'};
+    }
   }
 `
