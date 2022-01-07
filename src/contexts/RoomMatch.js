@@ -16,7 +16,7 @@ export default function RoomMatchProvider({ children }) {
   }
 
   const playerJoined = (player) => {
-    setCurrentRoom({ ...room, players: room.players.concat(player) })
+    setCurrentRoom({ ...room, players: [room.players[0], player] })
   }
 
   const setJoinedRoom = (room) => {
