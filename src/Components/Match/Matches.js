@@ -30,9 +30,7 @@ const Matches = ({ election, upScore }) => {
     return () => clearTimeout(finish)
   }, [opponent, resultOfMatch])
 
-  const playAgain = () => {
-    navigate('/')
-  }
+  const playAgain = () => navigate('/')
 
   return (
     <OptionsMatch>
@@ -56,7 +54,7 @@ const Matches = ({ election, upScore }) => {
         <span> The House Picked </span>
       </OptionMatchWrapper>
 
-      {finishMatch && <Result win={resultOfMatch} draw={resultOfMatch === 'draw'} view={playAgain}/>}
+      {finishMatch && <Result win={resultOfMatch} draw={resultOfMatch === 'draw'} playAgain={playAgain}/>}
     </OptionsMatch>
   )
 }

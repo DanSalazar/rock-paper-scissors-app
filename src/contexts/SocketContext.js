@@ -9,15 +9,13 @@ export default function SocketProvider ({ children }) {
 
   useEffect(() => {
     try {
-      const socket = io('https://secret-tor-29335.herokuapp.com')
+      const socket = io(process.env.SERVER)
       setConnection(socket)
     } catch (e) {
       console.log(e)
     }
 
-    return () => {
-      if (connection !== null) return connection.close()
-    }
+    return () => connection.close()
   }, [])
 
   return <SocketContext.Provider value={connection}>
