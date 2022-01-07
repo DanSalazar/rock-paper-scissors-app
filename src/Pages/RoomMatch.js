@@ -12,24 +12,26 @@ import RoomMatches from '../Components/Match/RoomMatches'
 
 const RoomMatchPage = () => {
   const roomContext = useContext(RoomMatch)
-  const [view, setView] = useState(roomContext.room.players[1] || false)
+  const [view, setView] = useState(false)
   const [match, setMatch] = useState(false)
   const navigate = useNavigate()
   const socket = useSocket()
 
-  const setViews = () => {
+  const resetViewsAndScore = () => {
     setMatch(false)
     setView(false)
     roomContext.cleanScore()
   }
 
   useEffect(() => {
-    socket.on('player-joined', player => {
+    if (roomContext.room.players[1]) setView(true)
+
+    socket.on('player-joined', (player) => {
       roomContext.playerJoined(player)
       setView(true)
     })
 
-    socket.on('op-selection', election => {
+    socket.on('op-selection', (election) => {
       roomContext.setOpElection(election)
     })
 
@@ -41,10 +43,16 @@ const RoomMatchPage = () => {
 
     socket.on('player-leave', (user) => {
       roomContext.playerLeaves()
-      setViews()
+      resetViewsAndScore()
+      toast(`${user} leaves`, { icon: '😓' })
     })
 
-    return () => socket.off('off')
+    return () => {
+      socket.off('player-joined')
+      socket.off('op-selection')
+      socket.off('play-again')
+      socket.off('player-leave')
+    }
   }, [])
 
   const playAgain = () => {
@@ -65,15 +73,18 @@ const RoomMatchPage = () => {
     setMatch(true)
   }
 
+  const viewMatch = match 
+    ? <RoomMatches
+        election={roomContext.election}
+        opponent={roomContext.opElection}
+        playAgain={playAgain}
+      />
+    : <OptionPentagon select={handleElection} />
+
   return (
     <Layout buttons={<Button onClick={handleLeaveOfRoom}>Leave</Button>}>
-      <HeaderRoom/>
-      {view
-        ? match
-          ? <RoomMatches election={roomContext.election} opponent={roomContext.opElection} playAgain={playAgain} />
-          : <OptionPentagon select={handleElection}/>
-        : <WaitingText>Waiting for guest</WaitingText>
-      }
+      <HeaderRoom />
+      {view ? viewMatch : <WaitingText>Waiting for guest</WaitingText>}
       <Toaster position='top-right' />
     </Layout>
   )

@@ -1,7 +1,13 @@
 import { useContext, useState, useEffect } from 'react'
 import { RoomMatch } from '../../contexts/RoomMatch'
 import { useNavigate } from 'react-router-dom'
-import { RoomSection, InputController, Label, ButtonsWrapper, Error } from './styles'
+import {
+  RoomSection,
+  InputController,
+  Label,
+  ButtonsWrapper,
+  Error
+} from './styles'
 import { Button } from '../styles'
 import useField from '../../hooks/useField'
 import useSocket from '../../hooks/useSocket'
@@ -18,27 +24,26 @@ const RoomMenu = () => {
 
   useEffect(() => {
     // Validations from server
-    socket.on('room-exist', setErrors)
-    socket.on('password-too-short', setErrors)
-    socket.on('room-too-short', setErrors)
-    socket.on('room-not-exist', setErrors)
-    socket.on('incorrect-password', setErrors)
-    socket.on('full-room', setErrors)
+    socket.on('error-room', setErrors)
 
-    socket.on('new-room-created', room => {
+    socket.on('new-room-created', (room) => {
       roomContext.setRoom(room)
       navigate(room.name)
     })
 
-    socket.on('joined', room => {
+    socket.on('joined', (room) => {
       roomContext.setJoinedRoom(room)
       navigate(room.name)
     })
 
-    return () => socket.off('off')
+    return () => {
+      socket.off('error-room', setErrors)
+      socket.off('new-room-created')
+      socket.off('joined')
+    }
   }, [])
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault()
 
     if (status === 'Create') {
@@ -62,15 +67,19 @@ const RoomMenu = () => {
   return (
     <RoomSection onSubmit={handleSubmit}>
       <Label>Name</Label>
-      <InputController {...username}/>
+      <InputController {...username} />
       <Label>Room Name</Label>
-      <InputController {...roomName}/>
+      <InputController {...roomName} />
       <Label>Password</Label>
       <InputController {...roomPass} />
       <Error>{errors.error && errors.message}</Error>
       <ButtonsWrapper>
-        <Button onClick={({ target }) => setStatus(target.innerHTML)}>Create</Button>
-        <Button onClick={({ target }) => setStatus(target.innerHTML)}>Join</Button>
+        <Button onClick={({ target }) => setStatus(target.innerHTML)}>
+          Create
+        </Button>
+        <Button onClick={({ target }) => setStatus(target.innerHTML)}>
+          Join
+        </Button>
       </ButtonsWrapper>
     </RoomSection>
   )
