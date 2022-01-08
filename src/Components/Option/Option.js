@@ -1,4 +1,3 @@
-import React from 'react'
 import { OptionStyled, OptionBorder, Svg } from './style'
 import spock from '../../images/icon-spock.svg'
 import rock from '../../images/icon-rock.svg'
@@ -23,7 +22,17 @@ const imageOfOption = {
   spock
 }
 
-const Option = ({ handler, gridCol, gridRow, place, optionName, padding, win, sizeM, sizeD }) => {
+const Option = ({
+  handler,
+  gridCol,
+  gridRow,
+  place,
+  optionName,
+  padding,
+  win,
+  sizeM,
+  sizeD
+}) => {
   const handleOption = (e) => {
     return handler ? handler(e.target.dataset.value) : null
   }
@@ -37,10 +46,13 @@ const Option = ({ handler, gridCol, gridRow, place, optionName, padding, win, si
       gridRow={gridRow}
       gridCol={gridCol}
       gradient={gradientOptions[optionName]}
-      padding={padding}
-    >
+      padding={padding}>
       <OptionStyled data-value={optionName} sizeM={sizeM} sizeD={sizeD}>
-        <Svg src={imageOfOption[optionName]} alt='icon-option' data-value={optionName} />
+        <Svg
+          src={imageOfOption[optionName]}
+          alt='icon-option'
+          data-value={optionName}
+        />
       </OptionStyled>
     </OptionBorder>
   )

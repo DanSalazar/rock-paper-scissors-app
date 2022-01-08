@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { OptionOverlay } from './style'
 import Option from '../Option/Option'
 import PropTypes from 'prop-types'
@@ -7,26 +7,32 @@ const OPTIONS = ['scissors', 'paper', 'spock', 'lizard', 'rock']
 
 const SIZES = { D: '200px', M: '100px' }
 
-const MatchOpponent = ({ optionName, win, setOpponent }) => {
+const MatchOpponent = ({ opponent, win, setOpponent }) => {
   useEffect(() => {
-    setTimeout(() => {
-      setOpponent(OPTIONS[Math.round(Math.random() * 4)])
-    }, 1500)
+    let timer
+    if (setOpponent)
+      timer = setTimeout(
+        () => setOpponent(OPTIONS[Math.round(Math.random() * 4)]),
+        1500
+      )
+    return () => clearTimeout(timer)
   }, [setOpponent])
 
   return (
     <>
-      {optionName
-        ? <Option
-            sizeD={SIZES.D}
-            sizeM={SIZES.M}
-            padding='2.25em'
-            optionName={optionName}
-            win={win}
-          />
-        : <OptionOverlay sizeD={SIZES.D} sizeM={SIZES.M}>
-          <div/>
-        </OptionOverlay>}
+      {opponent ? (
+        <Option
+          sizeD={SIZES.D}
+          sizeM={SIZES.M}
+          padding='2.25em'
+          optionName={opponent}
+          win={win}
+        />
+      ) : (
+        <OptionOverlay sizeD={SIZES.D} sizeM={SIZES.M}>
+          <div />
+        </OptionOverlay>
+      )}
     </>
   )
 }
@@ -34,7 +40,7 @@ const MatchOpponent = ({ optionName, win, setOpponent }) => {
 export default MatchOpponent
 
 MatchOpponent.propTypes = {
-  optionName: PropTypes.string.isRequired,
-  win: PropTypes.bool.isRequired,
-  setOpponent: PropTypes.func.isRequired
+  win: PropTypes.bool,
+  setOpponent: PropTypes.func,
+  opponent: PropTypes.string
 }

@@ -4,8 +4,9 @@ module.exports = {
     es2021: true
   },
   extends: [
+    'plugin:react/recommended',
     'standard',
-    'plugin:react/recommended'
+    'prettier'
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -18,5 +19,7 @@ module.exports = {
     'react'
   ],
   rules: {
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
   }
 }

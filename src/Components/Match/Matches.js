@@ -1,68 +1,61 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { OptionsMatch, OptionMatchWrapper } from './style'
+import { useNavigate } from 'react-router-dom'
 import Option from '../Option/Option'
-import checkWinner from '../../checkWinner'
+import { getWinner } from '../../utils'
 import Result from '../Result/Result'
-import ScoreContext from '../../ScoreContext/ScoreContext'
 import MatchOpponent from './MatchOpponent'
 import PropTypes from 'prop-types'
 
+// Set sizes of option in match view
 const SIZES = { D: '200px', M: '100px' }
 
-const Matches = ({ election, returnGame }) => {
-  const { setScore } = useContext(ScoreContext)
-
-  const [finishMatch, setfinishMatch] = useState(false)
-  const [win, setWin] = useState(false)
-  const [draw, setDraw] = useState(false)
-  const [winOpponent, setWinOpponent] = useState(false)
+const Matches = ({ election, upScore }) => {
+  const [finishMatch, setFinishMatch] = useState(false)
   const [opponent, setOpponent] = useState('')
+  const resultOfMatch = useMemo(() => getWinner(election, opponent), [opponent])
+  const navigate = useNavigate()
+  const win = resultOfMatch && resultOfMatch !== 'draw'
+  const lose = !resultOfMatch && resultOfMatch !== 'draw'
 
   useEffect(() => {
-    // Return winner game
-    const winnerGame = checkWinner.filter(item => item.name === election)[0]
+    let finish
 
-    if (winnerGame.beats.includes(opponent)) {
-      setWin(true)
-      setScore(score => score + 1)
-    } else if (opponent === election) {
-      setDraw(true)
-    } else if (winnerGame.defeat.includes(opponent)) {
-      setWinOpponent(true)
-      setScore(score => score === 0 ? 0 : score - 1)
+    if (opponent) {
+      finish = setTimeout(() => setFinishMatch(true), 1500)
+      if (win) upScore('win')
+      if (lose) upScore('lose')
     }
+  
+    return () => clearTimeout(finish)
+  }, [opponent, resultOfMatch])
 
-    return setTimeout(() => {
-      setfinishMatch(true)
-    }, 2500)
-  }, [election, opponent, setScore])
+  const playAgain = () => navigate('/')
 
   return (
-    <>
-      <OptionsMatch>
-        <OptionMatchWrapper>
-          {election &&
-            <Option
-              padding='2.25em' win={win}
-              optionName={election}
-              sizeD={SIZES.D}
-              sizeM={SIZES.M}
-            />}
-          <span>You Picked</span>
-        </OptionMatchWrapper>
+    <OptionsMatch>
+      <OptionMatchWrapper>
+        {election &&
+          <Option
+            padding='2.25em' win={win}
+            optionName={election}
+            sizeD={SIZES.D}
+            sizeM={SIZES.M}
+          />}
+        <span>You Picked</span>
+      </OptionMatchWrapper>
 
-        <OptionMatchWrapper>
-          <MatchOpponent
-            optionName={opponent}
-            win={winOpponent}
-            setOpponent={setOpponent}
-          />
-          <span> The House Picked </span>
-        </OptionMatchWrapper>
+      <OptionMatchWrapper>
+        <MatchOpponent
+          opponent={opponent}
+          win={lose}
+          setOpponent={setOpponent}
+        />
+        <span> The House Picked </span>
+      </OptionMatchWrapper>
 
-        {finishMatch && <Result win={win} draw={draw} returnGame={returnGame} />}
-      </OptionsMatch>
-    </>
+      {finishMatch && <Result win={resultOfMatch} draw={resultOfMatch === 'draw'} playAgain={playAgain}/>}
+    </OptionsMatch>
   )
 }
 
@@ -70,5 +63,5 @@ export default Matches
 
 Matches.propTypes = {
   election: PropTypes.string.isRequired,
-  returnGame: PropTypes.func.isRequired
+  upScore: PropTypes.func.isRequired
 }
