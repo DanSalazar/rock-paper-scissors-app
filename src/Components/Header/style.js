@@ -16,24 +16,26 @@ export const HeaderStyled = styled.div`
 `
 
 export const HeaderLogo = styled.img`
-  max-width: 30%;
+  max-width: 25%;
+
+  @media screen and (min-width: 768px) {
+    max-width: 30%;
+  }
 `
 
 export const HeaderState = styled.div`
-  background: #fff;
+  background-color: #fff;
   border-radius: var(--b-radius);
   height: auto;
   text-transform: uppercase;
   text-align: center;
   min-width: 7.35em;
-  font-size: 1em;
   padding: 0.875em 0;
   font-weight: 700;
-  color: hsl(229, 64%, 46%);
 
-  span {
-    font-size: 3.25em;
-    color: hsl(229, 25%, 31%);
+  div {
+    display: flex;
+    flex-direction: column;
   }
 
   @media screen and (min-width: 1024px) {
@@ -41,13 +43,29 @@ export const HeaderState = styled.div`
   }
 `
 
+export const HeaderScore = styled.span`
+  font-size: 3em;
+  color: hsl(229, 25%, 31%);
+`
+
+export const HeaderScoreTitle = styled.span`
+  color: hsl(229, 64%, 46%);
+`
+
 export const HeaderRoomState = styled(HeaderState)`
   display: flex;
-  align-items: center;
-  justify-content: center;
   min-width: auto;
+  font-size: 0.75em;
 
   div {
-    width: 5.25em;
+    width: 5em;
   }
+
+  @media screen and (min-width: 320px) {
+    font-size: 1em;
+
+    div {
+      width: 6.25em;
+    }
+  } 
 `
