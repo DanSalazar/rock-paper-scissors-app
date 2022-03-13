@@ -1,4 +1,4 @@
-import { HeaderLogo, HeaderState, HeaderStyled } from './style'
+import { HeaderLogo, HeaderState, HeaderStyled, HeaderScoreTitle, HeaderScore } from './style'
 import PropTypes from 'prop-types'
 import Logo from '../../images/logo-bonus.svg'
 
@@ -8,8 +8,10 @@ const Header = ({ score, viewScore }) => {
       <HeaderLogo alt='logo' src={Logo} />
       {viewScore &&
       <HeaderState>
-        <p>SCORE</p>
-        <span>{score}</span>
+        <div>
+          <HeaderScoreTitle>SCORE</HeaderScoreTitle>
+          <HeaderScore>{score}</HeaderScore>
+        </div>
       </HeaderState>}
     </HeaderStyled>
   )
