@@ -14,7 +14,7 @@ export const Button = styled.button`
   padding: 0.75em 0;
   width: 100px;
   border: 2px solid var(--white);
-  color: #fff;
+  color: var(--white);
   cursor: pointer;
   font-family: 'Barlow Semi Condensed', sans-serif;
   text-transform: uppercase;
