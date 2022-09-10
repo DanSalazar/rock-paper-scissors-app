@@ -15,8 +15,9 @@ export const ChatContainer = styled.div`
 
 	@media screen and (min-width: 768px) {
 		right: -20px;
-		bottom: 25%;
+		bottom: 20%;
 		width: 400px;
+		height: 70%;
 		border-top-left-radius: 36px;
 		border-bottom-left-radius: 36px;
 		border-top-right-radius: 0;
@@ -60,14 +61,14 @@ export const Messages = styled.div`
 
 	.message:nth-child(odd) {
 		align-self: flex-start;
-		border-color: #ff4757;
-		color: #ff4757;
+		border-color: var(--red);
+		color: var(--red);
 	}
 
 	.message:nth-child(even) {
 		align-self: flex-end;
-		border-color: #5352ed;
-		color: #5352ed;
+		border-color: var(--green);
+		color: var(--green);
 	}
 `
 

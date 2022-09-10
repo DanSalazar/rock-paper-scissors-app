@@ -7,6 +7,7 @@ const GlobalStyles = createGlobalStyle`
     --red: hsl(349, 70%, 56%);
     --white: #ccc;
     --transition-mode: 0.4s ease;
+    --green: #00b894;
   }
   
   * {

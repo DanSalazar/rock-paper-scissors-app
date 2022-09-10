@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 import { ChatContainer, ChatHeader, Messages, FormChat, ChatInput, Message } from './styles.js'
-import { Button } from '../styles'
+import { ButtonColored } from '../styles'
 import PropTypes from 'prop-types'
 
 function Chat ({ onCloseChat }) {
@@ -11,8 +11,12 @@ function Chat ({ onCloseChat }) {
 	const onChange = ({ target: { value } }) => setMessage(value)
 
 	const onSubmit = (e) => {
+		const newMessage = {
+			author: 'Foo',
+			content: message
+		}
 		e.preventDefault()
-		setMessages([...messages, message])
+		setMessages([...messages, newMessage])
 		setMessage('')
 	}
 
@@ -38,9 +42,9 @@ function Chat ({ onCloseChat }) {
 			</Messages>
 			<FormChat onSubmit={onSubmit} action=''>
 				<ChatInput value={message} onChange={onChange} placeholder='Message' />
-				<Button>
+				<ButtonColored>
 					Submit
-				</Button>
+				</ButtonColored>
 			</FormChat>
 		</ChatContainer>
 	)

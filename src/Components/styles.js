@@ -29,3 +29,12 @@ export const Button = styled.button`
     color: var(--red);
   }
 `
+
+export const ButtonColored = styled(Button)`
+  background: var(--red);
+  border: 0;
+
+  &:hover {
+    color: #fff;
+  }
+`
