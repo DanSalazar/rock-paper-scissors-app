@@ -36,6 +36,10 @@ export const OptionBorder = styled.div`
     @media screen and (min-width: 1024px){
         padding: ${props => props.padding || '1em'};
     }
+
+    @media (prefers-reduced-motion) {
+        transition: none;
+    }
 `
 
 export const OptionStyled = styled.div`

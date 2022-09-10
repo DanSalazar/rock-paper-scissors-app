@@ -4,15 +4,27 @@ export const ChatContainer = styled.div`
 	position: fixed;
 	bottom: 0;
 	height: 60%;
-	max-height: 60;
 	width: 100%;
 	background: hsl(237deg 53% 9%);
-	border-top-left-radius: 64px;
-	border-top-right-radius: 64px;
+	border-top-left-radius: 48px;
+	border-top-right-radius: 48px;
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+
+	@media screen and (min-width: 768px) {
+		right: -20px;
+		bottom: 25%;
+		width: 400px;
+		border-top-left-radius: 36px;
+		border-bottom-left-radius: 36px;
+		border-top-right-radius: 0;
+	}
+
+	@media (prefers-reduced-motion) {
+		animation: none;
+	}
 `
 
 export const ChatHeader = styled.div`
@@ -44,6 +56,7 @@ export const Messages = styled.div`
 	gap: 16px 0;
 	padding: 1em 1.5em;
 	height: 100%;
+	transition: all 0.2s ease;
 
 	.message:nth-child(odd) {
 		align-self: flex-start;
@@ -62,6 +75,9 @@ export const FormChat = styled.form`
 	display: flex;
 	justify-content: space-between;
 	padding: 12px;
+	@media screen and (min-width: 768px) {
+		padding: 24px 40px;
+	}
 `
 
 export const ChatInput = styled.input`
@@ -81,12 +97,13 @@ export const Message = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 2px 0;
-	width: 300px;
+	width: 250px;
 	border-radius: var(--b-radius);
 	border: 2px solid;
 	word-break: break-all;
 	height: auto;
 	padding: 8px 12px;
+	transition: all 0.2s ease;
 
 	.author {
 		color: inherit;
@@ -94,5 +111,9 @@ export const Message = styled.div`
 
 	.content {
 		color: #fff;
+	}
+
+	@media screen and (min-width: 768px) {
+		width: 200px;
 	}
 `

@@ -13,6 +13,10 @@ export const RoomSection = styled.form`
   @media screen and (min-width: 768px) {
     width: 300px;
   }
+
+  @media (prefers-reduced-motion) {
+    animation: none;
+  }
 `
 
 export const Label = styled.label`

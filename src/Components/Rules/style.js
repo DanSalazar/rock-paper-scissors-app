@@ -17,6 +17,10 @@ export const RulesContainer = styled.div`
   @media screen and (min-width: 768px) {
     background: rgba(0, 0, 0, 0.75);
   }
+
+  @media (prefers-reduced-motion) {
+    animation: none;
+  }
 `
 
 export const RulesContent = styled.div`
