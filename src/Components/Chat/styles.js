@@ -57,19 +57,6 @@ export const Messages = styled.div`
 	gap: 16px 0;
 	padding: 1em 1.5em;
 	height: 100%;
-	transition: all 0.2s ease;
-
-	.message:nth-child(odd) {
-		align-self: flex-start;
-		border-color: var(--red);
-		color: var(--red);
-	}
-
-	.message:nth-child(even) {
-		align-self: flex-end;
-		border-color: var(--green);
-		color: var(--green);
-	}
 `
 
 export const FormChat = styled.form`
@@ -98,16 +85,15 @@ export const Message = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 2px 0;
-	width: 250px;
 	border-radius: var(--b-radius);
 	border: 2px solid;
 	word-break: break-all;
 	height: auto;
 	padding: 8px 12px;
-	transition: all 0.2s ease;
+	border-color: var(--white);
 
 	.author {
-		color: inherit;
+		color: var(--green);
 	}
 
 	.content {
