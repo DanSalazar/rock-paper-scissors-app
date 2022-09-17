@@ -5,7 +5,6 @@ import { RoomMatch } from '../../contexts/RoomMatch'
 
 const HeaderRoom = () => {
   const { score, room: { players } } = useContext(RoomMatch)
-  console.log(players)
 
   return (
     <HeaderStyled>
