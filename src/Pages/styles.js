@@ -27,4 +27,5 @@ export const WaitingText = styled.h4`
   color: var(--white);
   font-size: 2em;
   letter-spacing: 1.25px;
+  text-align: center;
 `
