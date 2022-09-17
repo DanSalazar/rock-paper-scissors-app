@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { OptionsMatch, OptionMatchWrapper } from './style'
 import { useNavigate } from 'react-router-dom'
 import Option from '../Option/Option'
@@ -13,22 +13,20 @@ const SIZES = { D: '200px', M: '100px' }
 const Matches = ({ election, upScore }) => {
   const [finishMatch, setFinishMatch] = useState(false)
   const [opponent, setOpponent] = useState('')
-  const resultOfMatch = useMemo(() => getWinner(election, opponent), [opponent])
   const navigate = useNavigate()
-  const win = resultOfMatch && resultOfMatch !== 'draw'
-  const lose = !resultOfMatch && resultOfMatch !== 'draw'
+  const resultOfMatch = getWinner(election, opponent)
 
   useEffect(() => {
     let finish
 
     if (opponent) {
       finish = setTimeout(() => setFinishMatch(true), 1500)
-      if (win) upScore('win')
-      if (lose) upScore('lose')
+      if (resultOfMatch === 'Win') upScore('win')
+      if (resultOfMatch === 'Lose') upScore('lose')
     }
   
     return () => clearTimeout(finish)
-  }, [opponent, resultOfMatch])
+  }, [opponent])
 
   const playAgain = () => navigate('/')
 
@@ -37,7 +35,7 @@ const Matches = ({ election, upScore }) => {
       <OptionMatchWrapper>
         {election &&
           <Option
-            padding='2.25em' win={win}
+            padding='2.25em' win={resultOfMatch === 'Win'}
             optionName={election}
             sizeD={SIZES.D}
             sizeM={SIZES.M}
@@ -48,13 +46,13 @@ const Matches = ({ election, upScore }) => {
       <OptionMatchWrapper>
         <MatchOpponent
           opponent={opponent}
-          win={lose}
+          win={resultOfMatch === 'Lose'}
           setOpponent={setOpponent}
         />
-        <span> The House Picked </span>
+        <span>The House Picked</span>
       </OptionMatchWrapper>
 
-      {finishMatch && <Result win={resultOfMatch} draw={resultOfMatch === 'draw'} playAgain={playAgain}/>}
+      {finishMatch && <Result result={resultOfMatch} playAgain={playAgain}/>}
     </OptionsMatch>
   )
 }

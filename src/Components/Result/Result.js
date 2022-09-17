@@ -1,10 +1,10 @@
 import { ResultContainer, ResultTitle, ButtonResult } from './style'
 import PropTypes from 'prop-types'
 
-const Result = ({ win, draw, playAgain }) => {
+const Result = ({ result, playAgain }) => {
   return (
     <ResultContainer>
-      <ResultTitle>{draw ? 'Draw' : win ? 'You Win' : 'You lose'}</ResultTitle>
+      <ResultTitle>{result}</ResultTitle>
       <ButtonResult width='100%' onClick={playAgain}>
         Play Again
       </ButtonResult>
@@ -15,7 +15,6 @@ const Result = ({ win, draw, playAgain }) => {
 export default Result
 
 Result.propTypes = {
-  win: PropTypes.bool,
-  draw: PropTypes.bool,
+  result: PropTypes.string,
   playAgain: PropTypes.func
 }
