@@ -7,6 +7,10 @@ export const ResultContainer = styled.div`
   align-self: center;
   justify-self: center;
 
+  @media (prefers-reduced-motion) {
+    animation: none;
+  }
+
   @media screen and (min-width: 1024px) {
     grid-column: 2/2;
     grid-row: 1;

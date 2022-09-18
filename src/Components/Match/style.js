@@ -23,6 +23,10 @@ export const OptionsMatch = styled.div`
   height: auto;
   animation: ${show} var(--transition-mode);
 
+  @media (prefers-reduced-motion) {
+    animation: none;
+  }
+
   @media screen and (min-width: 1024px) {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     grid-template-rows: repeat(1, 1fr);
@@ -61,6 +65,10 @@ export const OptionOverlay = styled.div`
   background-color: rgba(0, 0, 0, 30%);
   padding: 0.875em;
   animation: ${overlayAnim} 1.5s var(--transition-mode) infinite;
+
+  @media (prefers-reduced-motion) {
+    animation: none;
+  }
 
   div {
     width: 100px;

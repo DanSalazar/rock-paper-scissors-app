@@ -1,25 +1,17 @@
 import styled from 'styled-components'
-import { show } from '../styles'
+import { Modal } from '../styles'
 
-export const RulesContainer = styled.div`
-  background: #fff;
-  position: fixed;
-  display: flex;
-  backdrop-filter: blur(1.5px);
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  animation: ${show} 0.1s ease;
-
-  @media screen and (min-width: 768px) {
-    background: rgba(0, 0, 0, 0.75);
+export const ModalForRules = styled(Modal)`
+  @media screen and (max-width: 768px) {
+    background: #fff
   }
 `
 
 export const RulesContent = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: grid;
   grid-template-columns: repeat(1, fr);
   height: 90%;
@@ -37,7 +29,8 @@ export const RulesContent = styled.div`
   @media screen and (min-width: 768px) {
     background: #fff;
     grid-template-columns: repeat(1, 1fr);
-    height: 28.125em;
+    height: 500px;
+    min-width: 350px;
     border-radius: 8px;
     padding: 1.75em 3em 2.5em 3em;
     justify-items: flex-start;
@@ -60,9 +53,12 @@ export const RulesButton = styled.button`
 `
 
 export const SvgRules = styled.img`
-  min-height: 250px;
+  min-width: 85vw;
+  height: 45vh;
 
   @media screen and (min-width: 768px) {
     grid-column: 1/3;
+    min-width: 100%;
+    height: auto;
   }
 `

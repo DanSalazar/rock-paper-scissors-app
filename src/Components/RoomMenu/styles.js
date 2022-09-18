@@ -8,7 +8,11 @@ export const RoomSection = styled.form`
   padding-top: 4em;
   gap: 12px 0;
   height: 80%;
-  animation: ${show} var(--transition-mode); 
+  animation: ${show} var(--transition-mode);
+
+  @media (prefers-reduced-motion) {
+    animation: none;
+  }
 
   @media screen and (min-width: 768px) {
     width: 300px;
@@ -37,6 +41,10 @@ export const InputController = styled.input`
   margin: 6px 0;
   padding: 12px;
   transition: 0.2s ease;
+
+  @media (prefers-reduced-motion) {
+    transition: none;
+  }
 
   :focus {
     border: 2px solid var(--red);
