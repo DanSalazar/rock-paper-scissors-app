@@ -1,35 +1,32 @@
-const gameOptions = [
+const rules = [
   {
     name: 'scissors',
-    beats: ['paper', 'lizard'],
-    defeat: ['rock', 'spock']
+    beats: ['paper', 'lizard']
   },
   {
     name: 'paper',
-    beats: ['rock', 'spock'],
-    defeat: ['scissors', 'lizard']
+    beats: ['rock', 'spock']
   },
   {
     name: 'rock',
-    beats: ['scissors', 'lizard'],
-    defeat: ['spock', 'paper']
+    beats: ['scissors', 'lizard']
   },
   {
     name: 'spock',
-    beats: ['scissors', 'rock'],
-    defeat: ['paper', 'lizard']
+    beats: ['scissors', 'rock']
   },
   {
     name: 'lizard',
-    beats: ['paper', 'spock'],
-    defeat: ['rock', 'scissors']
+    beats: ['paper', 'spock']
   }
 ]
 
 export const getWinner = (election, opponent) => {
-  if (!election) return false
-  const winnerGame = gameOptions.find(option => option.name === election)
-  if (winnerGame.beats.indexOf(opponent) > -1) return true
-  if (opponent === election) return 'draw'
-  if (winnerGame.defeat.indexOf(election) > -1) return false
+  if (!election && !opponent) return false
+  const choose = rules.find(r => r.name === election)
+  
+  if (opponent === election) return 'Draw'
+  
+  if (choose.beats.indexOf(opponent) > -1) return 'Win'
+  else return 'Lose'
 }

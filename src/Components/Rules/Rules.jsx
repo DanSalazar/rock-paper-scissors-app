@@ -1,21 +1,24 @@
-import { RulesButton, RulesContent, RulesContainer, SvgRules } from './style'
+import { ModalForRules, RulesButton, RulesContent, SvgRules } from './style'
 import imageRules from '../../images/image-rules-bonus.svg'
 import iconClose from '../../images/icon-close.svg'
 import PropTypes from 'prop-types'
 
 const Rules = ({ view, setView }) => {
+  const closeView = () => setView(false)
   return (
     <>
-      {view &&
-        <RulesContainer>
+      {view && 
+        <>
+          <ModalForRules onClick={closeView}/>
           <RulesContent>
             <p>Rules</p>
             <SvgRules src={imageRules} alt='Rules of Game' />
-            <RulesButton onClick={() => setView(false)}>
+            <RulesButton onClick={closeView}>
               <img src={iconClose} alt='Close' />
             </RulesButton>
           </RulesContent>
-        </RulesContainer>}
+        </>
+      }
     </>
   )
 }

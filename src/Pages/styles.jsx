@@ -18,8 +18,8 @@ export const AppContainer = styled.div`
 
 export const ButtonsWrapper = styled.div`
   @media screen and (min-width: 1024px){
-      align-self: flex-end;
-    }
+    align-self: flex-end;
+  }
 }
 `
 

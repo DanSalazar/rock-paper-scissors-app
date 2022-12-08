@@ -12,6 +12,10 @@ export const PentagonWrapper = styled.div`
   grid-gap: 1em 2.5em;
   animation: ${show} var(--transition-mode);
 
+  @media (prefers-reduced-motion) {
+    animation: none;
+  }
+
   @media screen and (min-width: 400px) {
     width: 20em;
     align-self: center;
