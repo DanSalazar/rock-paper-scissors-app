@@ -4,12 +4,16 @@ import PropTypes from 'prop-types'
 
 export const SocketContext = createContext({})
 
+const server = 'http://localhost:3001'
+
 export default function SocketProvider ({ children }) {
   const [connection, setConnection] = useState(null)
 
   useEffect(() => {
     try {
-      const socket = io('https://serv-io-rock-paper-scissors.herokuapp.com')
+      const socket = io(server, {
+        reconnection: false
+      })
       setConnection(socket)
     } catch (e) {
       console.log(e)

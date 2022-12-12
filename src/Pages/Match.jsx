@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom'
 import { SingleMatch } from '../contexts/SingleMatch'
 import Layout from './Layout'
 import Header from '../Components/Header/Header'
-import Matches from '../Components/Match/Matches'
+import Match from '../Components/Match/Match'
 
 const MatchPage = () => {
   const { score, currentElection, upScore } = useContext(SingleMatch)
@@ -13,7 +13,7 @@ const MatchPage = () => {
   return (
     <Layout>
       <Header score={score} viewScore={true}/>
-      <Matches election={currentElection} upScore={upScore}/>
+      <Match election={currentElection} upScore={upScore}/>
     </Layout>
   )
 }

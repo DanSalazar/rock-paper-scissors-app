@@ -11,11 +11,11 @@ function Chat ({ onCloseChat }) {
 	const onChange = ({ target: { value } }) => setMessage(value)
 
 	const onSubmit = (e) => {
+		e.preventDefault()
 		const newMessage = {
 			author: 'Foo',
 			content: message
 		}
-		e.preventDefault()
 		setMessages([...messages, newMessage])
 		setMessage('')
 	}
@@ -40,7 +40,7 @@ function Chat ({ onCloseChat }) {
 					</Message>
 				))}
 			</Messages>
-			<FormChat onSubmit={onSubmit} action=''>
+			<FormChat onSubmit={onSubmit}>
 				<ChatInput value={message} onChange={onChange} placeholder='Message' />
 				<ButtonColored>
 					Submit

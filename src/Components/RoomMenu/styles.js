@@ -34,6 +34,10 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  button {
+    margin: 0 .5rem;
+  }
 `
 
 export const InputController = styled.input`

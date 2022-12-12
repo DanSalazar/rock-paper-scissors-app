@@ -6,6 +6,7 @@ export const ResultContainer = styled.div`
   grid-column: 1/3;
   align-self: center;
   justify-self: center;
+  width: 50%;
 
   @media (prefers-reduced-motion) {
     animation: none;
@@ -19,7 +20,7 @@ export const ResultContainer = styled.div`
 
 export const ResultTitle = styled.h2`
   color: #fff;
-  font-size: 3.5em;
+  font-size: 3.5rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   text-align: center;
@@ -28,7 +29,8 @@ export const ResultTitle = styled.h2`
 export const ButtonResult = styled(Button)`
   width: 100%;
   background: #fff;
-  margin: 0.5em 0;
+  margin: 0.5rem 0;
   color: hsl(214, 47%, 23%);
   border: none;
+  font-weight: 700;
 `

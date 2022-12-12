@@ -4,12 +4,12 @@ import {
   Routes
 } from 'react-router-dom'
 import SingleMatchProvider from './contexts/SingleMatch'
-import RoomMatchProvider from './contexts/RoomMatch'
+import RoomContextProvider from './contexts/RoomContext'
 import SocketProvider from './contexts/SocketContext'
 import Home from './Pages/Home'
 import MatchPage from './Pages/Match'
 import NewRoom from './Pages/NewRoom'
-import RoomMatchPage from './Pages/RoomMatch'
+import RoomPage from './Pages/Room'
 
 function App () {
   return (
@@ -21,14 +21,14 @@ function App () {
               <Route index element={<Home/>} />
               <Route path='match' element={<MatchPage/>} />
               <Route path='room' element={
-                <RoomMatchProvider>
+                <RoomContextProvider>
                   <NewRoom/>
-                </RoomMatchProvider>
+                </RoomContextProvider>
               } />
               <Route path='room/:id' element={
-                <RoomMatchProvider>
-                  <RoomMatchPage/>
-                </RoomMatchProvider>
+                <RoomContextProvider>
+                  <RoomPage/>
+                </RoomContextProvider>
               } />
             </Route>
           </Routes>

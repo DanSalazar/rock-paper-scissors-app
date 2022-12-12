@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
 // Set sizes of option in match view
 const SIZES = { D: '200px', M: '100px' }
 
-const Matches = ({ election, upScore }) => {
+const Match = ({ election, upScore }) => {
   const [finishMatch, setFinishMatch] = useState(false)
   const [opponent, setOpponent] = useState('')
   const navigate = useNavigate()
@@ -57,9 +57,9 @@ const Matches = ({ election, upScore }) => {
   )
 }
 
-export default Matches
+export default Match
 
-Matches.propTypes = {
+Match.propTypes = {
   election: PropTypes.string.isRequired,
   upScore: PropTypes.func.isRequired
 }

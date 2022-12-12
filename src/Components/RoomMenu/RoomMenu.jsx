@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react'
-import { RoomMatch } from '../../contexts/RoomMatch'
+import { RoomContext } from '../../contexts/RoomContext'
 import { useNavigate } from 'react-router-dom'
 import {
   RoomSection,
@@ -13,7 +13,7 @@ import useField from '../../hooks/useField'
 import useSocket from '../../hooks/useSocket'
 
 const RoomMenu = () => {
-  const roomContext = useContext(RoomMatch)
+  const roomContext = useContext(RoomContext)
   const navigate = useNavigate()
   const socket = useSocket()
   const username = useField('text')
@@ -47,7 +47,7 @@ const RoomMenu = () => {
     e.preventDefault()
 
     if (status === 'Create') {
-      return socket.emit('new-room', {
+      socket.emit('new-room', {
         room: roomName.value,
         host: username.value,
         password: roomPass.value
@@ -55,8 +55,7 @@ const RoomMenu = () => {
     }
 
     if (status === 'Join') {
-      setErrors('true')
-      return socket.emit('join-room', {
+      socket.emit('join-room', {
         room: roomName.value,
         guest: username.value,
         password: roomPass.value
@@ -74,10 +73,10 @@ const RoomMenu = () => {
       <InputController {...roomPass} />
       <Error>{errors.error && errors.message}</Error>
       <ButtonsWrapper>
-        <Button onClick={({ target }) => setStatus(target.innerHTML)}>
+        <Button onClick={({ target }) => setStatus(target.textContent)}>
           Create
         </Button>
-        <Button onClick={({ target }) => setStatus(target.innerHTML)}>
+        <Button onClick={({ target }) => setStatus(target.textContent)}>
           Join
         </Button>
       </ButtonsWrapper>

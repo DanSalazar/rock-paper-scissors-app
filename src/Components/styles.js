@@ -27,19 +27,16 @@ export const Modal = styled.div`
 `
 
 export const Button = styled.button`
-  padding: 0.75em 0;
-  width: 100px;
+  padding: 0.75rem;
   border: 2px solid var(--white);
   color: var(--white);
   cursor: pointer;
-  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-family: inherit;
   text-transform: uppercase;
-  font-size: 1em;
+  font-size: 1rem;
   background: transparent;
-  outline: none;
   border-radius: var(--b-radius);
   transition: 0.1s linear;
-  margin: 0 6px;
 
   @media (prefers-reduced-motion) {
     transition: none; 

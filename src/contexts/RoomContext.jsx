@@ -1,12 +1,12 @@
 import { createContext, useState } from 'react'
 import PropTypes from 'prop-types'
 
-export const RoomMatch = createContext({})
+export const RoomContext = createContext({})
 
-export default function RoomMatchProvider({ children }) {
+export default function RoomContextProvider({ children }) {
   const [score, setScore] = useState({ host: 0, guest: 0 })
   const [election, setElection] = useState('')
-  const [opElection, setOpElection] = useState('')
+  const [opponent, setOpponent] = useState('')
   const [room, setCurrentRoom] = useState({})
 
   const setRoom = (room) => {
@@ -24,12 +24,12 @@ export default function RoomMatchProvider({ children }) {
   }
 
   const playerLeaves = () => {
-    setCurrentRoom({ ...room, players: room.players.slice(0, 1) })
+    setCurrentRoom({ ...room, players: [room.players[0]] })
   }
 
   const cleanElections = () => {
     setElection('')
-    setOpElection('')
+    setOpponent('')
   }
 
   const setScoreTo = (player) => {
@@ -45,14 +45,14 @@ export default function RoomMatchProvider({ children }) {
   }
 
   return (
-    <RoomMatch.Provider
+    <RoomContext.Provider
       value={{
         score,
         setScoreTo,
         election,
         setElection,
-        opElection,
-        setOpElection,
+        opponent,
+        setOpponent,
         playerJoined,
         room,
         playerLeaves,
@@ -63,10 +63,10 @@ export default function RoomMatchProvider({ children }) {
         cleanElections
       }}>
       {children}
-    </RoomMatch.Provider>
+    </RoomContext.Provider>
   )
 }
 
-RoomMatchProvider.propTypes = {
+RoomContextProvider.propTypes = {
   children: PropTypes.node
 }
