@@ -6,7 +6,7 @@ export const SocketContext = createContext({})
 
 const server = 'http://localhost:3001'
 
-export default function SocketProvider ({ children }) {
+export default function SocketProvider({ children }) {
   const [connection, setConnection] = useState(null)
 
   useEffect(() => {
@@ -22,9 +22,11 @@ export default function SocketProvider ({ children }) {
     return () => connection.close()
   }, [])
 
-  return <SocketContext.Provider value={connection}>
-    {children}
-  </SocketContext.Provider>
+  return (
+    <SocketContext.Provider value={connection}>
+      {children}
+    </SocketContext.Provider>
+  )
 }
 
 SocketProvider.propTypes = {

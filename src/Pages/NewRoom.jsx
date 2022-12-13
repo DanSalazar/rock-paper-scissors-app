@@ -9,7 +9,7 @@ const NewRoom = () => {
 
   return (
     <Layout buttons={<Button onClick={() => navigate('/')}>Single</Button>}>
-      <Header/>
+      <Header />
       <RoomMenu></RoomMenu>
     </Layout>
   )

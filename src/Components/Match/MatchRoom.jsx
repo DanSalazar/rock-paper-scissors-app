@@ -33,17 +33,18 @@ const MatchRoom = ({ election, opponent, playAgain }) => {
     <>
       <OptionsMatch>
         <OptionMatchWrapper>
-          {election &&
+          {election && (
             <Option
               padding='2.25em'
               win={result}
               optionName={election}
               sizeD={SIZES.D}
               sizeM={SIZES.M}
-            />}
+            />
+          )}
           <span>You Picked</span>
         </OptionMatchWrapper>
-         <OptionMatchWrapper>
+        <OptionMatchWrapper>
           <MatchOpponent opponent={opponent} win={!result} />
           <span>{guestPick}</span>
         </OptionMatchWrapper>

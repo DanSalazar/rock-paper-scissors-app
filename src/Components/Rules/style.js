@@ -3,7 +3,7 @@ import { Modal } from '../styles'
 
 export const ModalForRules = styled(Modal)`
   @media screen and (max-width: 768px) {
-    background: #fff
+    background: #fff;
   }
 
   @media (prefers-reduced-motion) {

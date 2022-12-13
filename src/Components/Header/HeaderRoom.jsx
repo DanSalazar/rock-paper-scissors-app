@@ -1,10 +1,19 @@
 import { useContext } from 'react'
-import { HeaderLogo, HeaderRoomState, HeaderStyled, HeaderScore, HeaderScoreTitle } from './style'
+import {
+  HeaderLogo,
+  HeaderRoomState,
+  HeaderStyled,
+  HeaderScore,
+  HeaderScoreTitle
+} from './style'
 import Logo from '../../images/logo-bonus.svg'
 import { RoomContext } from '../../contexts/RoomContext'
 
 const HeaderRoom = () => {
-  const { score, room: { players } } = useContext(RoomContext)
+  const {
+    score,
+    room: { players }
+  } = useContext(RoomContext)
 
   return (
     <HeaderStyled>

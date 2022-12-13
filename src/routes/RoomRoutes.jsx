@@ -6,12 +6,12 @@ const RoomPage = lazy(() => import('../Pages/Room'))
 const NewRoom = lazy(() => import('../Pages/NewRoom'))
 
 const RoomRoutes = () => {
-	return (
-		<RoutesWithNotFound>
-			<Route index element={<NewRoom />} />
-			<Route path=':id' element={<RoomPage />} />
-		</RoutesWithNotFound>
-	)
+  return (
+    <RoutesWithNotFound>
+      <Route index element={<NewRoom />} />
+      <Route path=':id' element={<RoomPage />} />
+    </RoutesWithNotFound>
+  )
 }
 
 export default RoomRoutes

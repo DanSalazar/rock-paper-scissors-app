@@ -36,7 +36,7 @@ export const ButtonsWrapper = styled.div`
   justify-content: center;
 
   button {
-    margin: 0 .5rem;
+    margin: 0 0.5rem;
   }
 `
 

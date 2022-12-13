@@ -24,13 +24,11 @@ const RoomPage = () => {
     opponent
   } = useRoom()
 
-  const viewMatch = match 
-    ? <MatchRoom
-        election={election}
-        opponent={opponent}
-        playAgain={playAgain}
-      />
-    : <OptionPentagon select={handleElection} />
+  const viewMatch = match ? (
+    <MatchRoom election={election} opponent={opponent} playAgain={playAgain} />
+  ) : (
+    <OptionPentagon select={handleElection} />
+  )
 
   const Buttons = (
     <>

@@ -1,8 +1,5 @@
 import { lazy, Suspense } from 'react'
-import {
-  BrowserRouter,
-  Route,
-} from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import RoutesWithNotFound from './routes/RoutesWithNotFound'
 import SingleMatchProvider from './contexts/SingleMatch'
 import RoomContextProvider from './contexts/RoomContext'
@@ -12,7 +9,7 @@ import MatchPage from './Pages/Match'
 
 const RoomRoutes = lazy(() => import('./routes/RoomRoutes'))
 
-function App () {
+function App() {
   return (
     <BrowserRouter>
       <Suspense fallback={'Loading'}>
@@ -21,7 +18,7 @@ function App () {
             <RoomContextProvider>
               <RoutesWithNotFound>
                 <Route path='/'>
-                  <Route index element={<Home/>} />
+                  <Route index element={<Home />} />
                   <Route path='match' element={<MatchPage />} />
                   <Route path='room/*' element={<RoomRoutes />} />
                 </Route>

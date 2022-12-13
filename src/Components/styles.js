@@ -22,7 +22,7 @@ export const Modal = styled.div`
 
   @media (prefers-reduced-motion) {
     animation: none;
-    backdrop-filter: blur(0px); 
+    backdrop-filter: blur(0px);
   }
 `
 
@@ -39,7 +39,7 @@ export const Button = styled.button`
   transition: 0.1s linear;
 
   @media (prefers-reduced-motion) {
-    transition: none; 
+    transition: none;
   }
 
   &:hover {

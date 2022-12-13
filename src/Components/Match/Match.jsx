@@ -24,7 +24,7 @@ const Match = ({ election, upScore }) => {
       if (resultOfMatch === 'Win') upScore('win')
       if (resultOfMatch === 'Lose') upScore('lose')
     }
-  
+
     return () => clearTimeout(finish)
   }, [opponent])
 
@@ -33,13 +33,15 @@ const Match = ({ election, upScore }) => {
   return (
     <OptionsMatch>
       <OptionMatchWrapper>
-        {election &&
+        {election && (
           <Option
-            padding='2.25em' win={resultOfMatch === 'Win'}
+            padding='2.25em'
+            win={resultOfMatch === 'Win'}
             optionName={election}
             sizeD={SIZES.D}
             sizeM={SIZES.M}
-          />}
+          />
+        )}
         <span>You Picked</span>
       </OptionMatchWrapper>
 
@@ -52,7 +54,7 @@ const Match = ({ election, upScore }) => {
         <span>The House Picked</span>
       </OptionMatchWrapper>
 
-      {finishMatch && <Result result={resultOfMatch} playAgain={playAgain}/>}
+      {finishMatch && <Result result={resultOfMatch} playAgain={playAgain} />}
     </OptionsMatch>
   )
 }

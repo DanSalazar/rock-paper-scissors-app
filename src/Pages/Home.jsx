@@ -1,4 +1,4 @@
-   import { useContext } from 'react'
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../Components/styles'
 import { SingleMatch } from '../contexts/SingleMatch'
@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <Layout buttons={<Button onClick={() => navigate('/room')}>Room</Button>}>
       <Header viewScore={false} />
-      <OptionPentagon select={select}/>
+      <OptionPentagon select={select} />
     </Layout>
   )
 }
