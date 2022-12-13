@@ -1,48 +1,33 @@
 import { useState, useRef } from 'react'
-import { ChatContainer, ChatHeader, Messages, FormChat, ChatInput, Message } from './styles.js'
+import { ChatContainer, ChatHeader, FormChat, ChatInput } from './styles.js'
 import { ButtonColored } from '../styles'
+import MessagesContainer from './Messages'
+import useField from '../../hooks/useField'
+import useChat from '../../hooks/useChat'
 import PropTypes from 'prop-types'
 
-function Chat ({ onCloseChat }) {
-	const [message, setMessage] = useState('')
-	const [messages, setMessages] = useState([{ author: 'Foo', content: 'Bar' }, { author: 'Cobra', content: 'Kai' }])
-	const messagesContainer = useRef(null)
+function Chat ({ open, onCloseChat }) {
+	const message = useField('text')
+	const { createNewMessage, messages, currentName } = useChat()
 
-	const onChange = ({ target: { value } }) => setMessage(value)
-
-	const onSubmit = (e) => {
+	const onNewMessage = (e) => {
 		e.preventDefault()
-		const newMessage = {
-			author: 'Foo',
-			content: message
-		}
-		setMessages([...messages, newMessage])
-		setMessage('')
+		createNewMessage(message.value)
+		message.clearValue()
 	}
 
 	return (
-		<ChatContainer>
+		<ChatContainer style={{ bottom: open ? '0' : '-32rem' }} >
 			<ChatHeader>
 				<span>Chat</span>
-				<button>
+				<button onClick={onCloseChat} >
 					&times;
 				</button>
 			</ChatHeader>
-			<Messages ref={messagesContainer} >
-				{messages.map((m, i) => (
-					<Message className='message' key={i} >
-						<p className="author">
-							{m.author}
-						</p>
-						<div className="content">
-							{m.content}
-						</div>
-					</Message>
-				))}
-			</Messages>
-			<FormChat onSubmit={onSubmit}>
-				<ChatInput value={message} onChange={onChange} placeholder='Message' />
-				<ButtonColored>
+			<MessagesContainer messages={messages} currentName={currentName} />
+			<FormChat onSubmit={onNewMessage} >
+				<ChatInput {...message} placeholder={'Write a message'} />
+				<ButtonColored onClick={onNewMessage} >
 					Submit
 				</ButtonColored>
 			</FormChat>
@@ -51,6 +36,7 @@ function Chat ({ onCloseChat }) {
 }
 
 Chat.propTypes = {
+	open: PropTypes.bool.isRequired,
 	onCloseChat: PropTypes.func.isRequired
 }
 

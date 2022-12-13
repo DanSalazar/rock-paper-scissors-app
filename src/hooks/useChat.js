@@ -1,32 +1,36 @@
 import { useEffect, useContext } from 'react'
 import useSocket from './useSocket'
-import { RoomMatch } from '../contexts/RoomMatch'
+import { RoomContext } from '../contexts/RoomContext'
 
 function useChat () {
 	const socket = useSocket()
-	const roomState = useContext(RoomMatch)
+	const { room, pushMessage } = useContext(RoomContext)
 
-	const onNewMessage = (value) => {
-	  const author = roomState.room.players[0]
+	const createNewMessage = (value) => {
+	  const author = room.players[0]
+
 	  const message = {
-	    message: value,
+	    content: value,
 	    author
 	  }
-	  roomState.pushMessage(message)
+
+	  pushMessage(message)
 	  socket.emit('new-message', message)
 	}
 
 	useEffect(() => {
-		const newMessage = (m) => {
-			roomState.pushMessage(m)
-		}
+		const newMessage = pushMessage
 
 		socket.on('new-message', newMessage)
 
     return () => socket.off('new-message', newMessage)
-	}, [socket, roomState])
+	}, [socket])
 
-	return { onNewMessage, messages: roomState.messages }
+	return { 
+		createNewMessage, 
+		messages: room.messages, 
+		currentName: room.players[0] 
+	}
 }
 
 export default useChat

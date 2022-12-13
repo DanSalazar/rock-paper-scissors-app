@@ -7,9 +7,12 @@ export default function useField (type) {
     setValue(target.value)
   }
 
+  const clearValue = () => setValue('')
+
   return {
     type,
     value,
+    clearValue,
     onChange
   }
 }

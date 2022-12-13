@@ -48,7 +48,7 @@ export const Button = styled.button`
 `
 
 export const ButtonColored = styled(Button)`
-  background: var(--red);
+  background-color: var(--blue);
   border: 0;
 
   &:hover {

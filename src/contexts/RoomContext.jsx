@@ -7,7 +7,7 @@ export default function RoomContextProvider({ children }) {
   const [score, setScore] = useState({ host: 0, guest: 0 })
   const [election, setElection] = useState('')
   const [opponent, setOpponent] = useState('')
-  const [room, setCurrentRoom] = useState({})
+  const [room, setCurrentRoom] = useState(null)
 
   const setRoom = (room) => {
     if (room.name) {
@@ -44,6 +44,15 @@ export default function RoomContextProvider({ children }) {
     setCurrentRoom({})
   }
 
+  const pushMessage = (message) => {
+    setCurrentRoom((currentRoom) => {
+      return {
+        ...currentRoom,
+        messages: currentRoom.messages.concat(message)
+      }
+    })
+  }
+
   return (
     <RoomContext.Provider
       value={{
@@ -60,7 +69,8 @@ export default function RoomContextProvider({ children }) {
         cleanRoom,
         cleanScore,
         setJoinedRoom,
-        cleanElections
+        cleanElections,
+        pushMessage
       }}>
       {children}
     </RoomContext.Provider>
