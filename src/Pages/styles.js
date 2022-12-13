@@ -33,3 +33,11 @@ export const WaitingText = styled.h4`
   letter-spacing: 1.25px;
   text-align: center;
 `
+
+export const NotFoundContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  height: 100vh;
+`
