@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import useRoom from '../hooks/useRoom'
 import { WaitingText } from './styles'
 import { Button } from '../Components/styles'
@@ -11,11 +11,12 @@ import MatchRoom from '../Components/Match/MatchRoom'
 import Chat from '../Components/Chat'
 
 const RoomPage = () => {
-  const [openChat, setChat] = useState(true)
+  const [openChat, setChat] = useState(false)
 
   const {
     hasGuest,
     match,
+    room,
     resetViewsAndScore,
     playAgain,
     handleLeaveRoom,
@@ -23,6 +24,8 @@ const RoomPage = () => {
     election,
     opponent
   } = useRoom()
+
+  if (!room) return <Navigate to='/room' replace={true} />
 
   const viewMatch = match ? (
     <MatchRoom election={election} opponent={opponent} playAgain={playAgain} />

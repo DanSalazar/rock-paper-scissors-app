@@ -19,7 +19,7 @@ export default function useRoom() {
 
   useEffect(() => {
     // When a guest join to a active room, set the View to start the match
-    if (roomContext.room.players[1]) setGuest(true)
+    if (roomContext.room?.players[1]) setGuest(true)
 
     const onPlayerJoin = (player) => {
       roomContext.playerJoined(player)
@@ -43,16 +43,20 @@ export default function useRoom() {
       toast(`${user} leaves`, { icon: '😓' })
     }
 
-    socket.on('player-joined', onPlayerJoin)
-    socket.on('op-selection', onOpponentSelection)
-    socket.on('play-again', onPlayAgain)
-    socket.on('player-leave', onPlayerLeave)
+    if (roomContext.room && socket.connected) {
+      socket.on('player-joined', onPlayerJoin)
+      socket.on('op-selection', onOpponentSelection)
+      socket.on('play-again', onPlayAgain)
+      socket.on('player-leave', onPlayerLeave)
+    }
 
     return () => {
-      socket.off('player-joined', onPlayerJoin)
-      socket.off('op-selection', onOpponentSelection)
-      socket.off('play-again', onPlayAgain)
-      socket.off('player-leave', onPlayerLeave)
+      if (roomContext.room && socket.connected) {
+        socket.off('player-joined', onPlayerJoin)
+        socket.off('op-selection', onOpponentSelection)
+        socket.off('play-again', onPlayAgain)
+        socket.off('player-leave', onPlayerLeave)
+      }
     }
   }, [])
 
@@ -78,6 +82,7 @@ export default function useRoom() {
 
   return {
     hasGuest,
+    room: roomContext.room,
     match,
     resetViewsAndScore,
     playAgain,
