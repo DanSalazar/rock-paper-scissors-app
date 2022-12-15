@@ -25,7 +25,7 @@ function Chat({ open, onCloseChat }) {
       <MessagesContainer messages={messages} currentName={currentName} />
       <FormChat onSubmit={onNewMessage}>
         <ChatInput {...message} placeholder={'Write a message'} />
-        <ButtonColored onClick={onNewMessage}>Submit</ButtonColored>
+        <ButtonColored onClick={onNewMessage}>Send</ButtonColored>
       </FormChat>
     </ChatContainer>
   )

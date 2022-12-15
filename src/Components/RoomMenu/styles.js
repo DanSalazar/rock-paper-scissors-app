@@ -5,8 +5,8 @@ export const RoomSection = styled.form`
   width: 90%;
   display: flex;
   flex-direction: column;
-  padding-top: 4em;
-  gap: 12px 0;
+  padding-top: 2.5rem;
+  gap: 0.5rem;
   height: 80%;
   animation: ${show} var(--transition-mode);
 
@@ -56,6 +56,10 @@ export const InputController = styled.input`
 
   :focus {
     border: 2px solid var(--red);
+  }
+
+  :disabled {
+    opacity: 0.1;
   }
 `
 

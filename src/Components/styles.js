@@ -45,6 +45,10 @@ export const Button = styled.button`
   &:hover {
     color: var(--red);
   }
+
+  :disabled {
+    opacity: 0.1;
+  }
 `
 
 export const ButtonColored = styled(Button)`

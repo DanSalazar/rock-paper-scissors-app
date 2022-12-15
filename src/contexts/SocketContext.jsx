@@ -10,15 +10,11 @@ export default function SocketProvider({ children }) {
   const [connection, setConnection] = useState(null)
 
   useEffect(() => {
-    try {
-      const socket = io(server, {
-        reconnection: false
-      })
-      setConnection(socket)
-    } catch (e) {
-      console.log(e)
-    }
+    const socket = io(server, {
+      reconnection: false
+    })
 
+    setConnection(socket)
     return () => connection.close()
   }, [])
 
