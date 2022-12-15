@@ -4,15 +4,16 @@ import RoutesWithNotFound from './routes/RoutesWithNotFound'
 import SingleMatchProvider from './contexts/SingleMatch'
 import RoomContextProvider from './contexts/RoomContext'
 import SocketProvider from './contexts/SocketContext'
-import Home from './Pages/Home'
 import MatchPage from './Pages/Match'
+import FallbackContainer from './Components/Fallback'
 
+const Home = lazy(() => import('./Pages/Home'))
 const RoomRoutes = lazy(() => import('./routes/RoomRoutes'))
 
 function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={'Loading'}>
+      <Suspense fallback={<FallbackContainer/ >}>
         <SocketProvider>
           <SingleMatchProvider>
             <RoomContextProvider>

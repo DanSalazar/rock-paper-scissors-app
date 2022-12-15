@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import { show, Button } from '../styles'
+import { fade, Button } from '../styles'
 
 export const ResultContainer = styled.div`
-  animation: ${show} 0.2s ease;
+  animation: ${fade} 0.2s ease;
   grid-column: 1/3;
   align-self: center;
   justify-self: center;

@@ -1,6 +1,16 @@
 import styled, { keyframes } from 'styled-components'
 
-export const show = keyframes`
+export const spinAnimation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+`
+
+export const fade = keyframes`
   0% {
     opacity: 0;
     }
@@ -18,7 +28,7 @@ export const Modal = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  animation: ${show} 50ms ease;
+  animation: ${fade} 50ms ease;
 
   @media (prefers-reduced-motion) {
     animation: none;
@@ -58,4 +68,20 @@ export const ButtonColored = styled(Button)`
   &:hover {
     color: #fff;
   }
+`
+
+export const Fallback = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+`
+
+export const Spin = styled.div`
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-left-color: var(--blue);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  animation: ${spinAnimation} 1s linear infinite;
 `

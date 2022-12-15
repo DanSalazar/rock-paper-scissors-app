@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components'
-import { show } from '../styles'
+import { fade } from '../styles'
 
 const overlayAnim = keyframes`
   0% {
@@ -21,7 +21,7 @@ export const OptionsMatch = styled.div`
   grid-template-rows: repeat(2, 1fr);
   width: 100%;
   height: auto;
-  animation: ${show} var(--transition-mode);
+  animation: ${fade} var(--transition-mode);
 
   @media (prefers-reduced-motion) {
     animation: none;

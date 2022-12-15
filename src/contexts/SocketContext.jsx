@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 export const SocketContext = createContext({})
 
-const server = 'http://localhost:3001'
+const server = import.meta.env.VITE_SERVER
 
 export default function SocketProvider({ children }) {
   const [connection, setConnection] = useState(null)

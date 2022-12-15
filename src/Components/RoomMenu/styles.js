@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { show } from '../styles'
+import { fade } from '../styles'
 
 export const RoomSection = styled.form`
   width: 90%;
@@ -8,7 +8,7 @@ export const RoomSection = styled.form`
   padding-top: 2.5rem;
   gap: 0.5rem;
   height: 80%;
-  animation: ${show} var(--transition-mode);
+  animation: ${fade} var(--transition-mode);
 
   @media (prefers-reduced-motion) {
     animation: none;
