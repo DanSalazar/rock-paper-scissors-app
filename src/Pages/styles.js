@@ -17,6 +17,10 @@ export const AppContainer = styled.div`
 `
 
 export const ButtonsWrapper = styled.div`
+  button {
+    margin: 0 .5rem;
+  }
+
   @media screen and (min-width: 1024px){
     align-self: flex-end;
   }
@@ -28,4 +32,12 @@ export const WaitingText = styled.h4`
   font-size: 2em;
   letter-spacing: 1.25px;
   text-align: center;
+`
+
+export const NotFoundContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  height: 100vh;
 `

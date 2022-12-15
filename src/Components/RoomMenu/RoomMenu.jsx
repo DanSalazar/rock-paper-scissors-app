@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react'
-import { RoomMatch } from '../../contexts/RoomMatch'
+import { RoomContext } from '../../contexts/RoomContext'
 import { useNavigate } from 'react-router-dom'
 import {
   RoomSection,
@@ -13,28 +13,31 @@ import useField from '../../hooks/useField'
 import useSocket from '../../hooks/useSocket'
 
 const RoomMenu = () => {
-  const roomContext = useContext(RoomMatch)
+  const roomContext = useContext(RoomContext)
   const navigate = useNavigate()
   const socket = useSocket()
+  // Indicates if the server is not running or socket can not make a connection
+  const status_message = socket.disconnected ? 'You are currently offline' : ''
   const username = useField('text')
   const roomName = useField('text')
   const roomPass = useField('text')
-  const [errors, setErrors] = useState({ error: false, message: '' })
+  const [errors, setErrors] = useState({ error: socket.disconnected, message: status_message })
   const [status, setStatus] = useState('')
 
   useEffect(() => {
-    // Validations from server
-    socket.on('error-room', setErrors)
-
-    socket.on('new-room-created', (room) => {
+    const onCreateRoom = (room) => {
       roomContext.setRoom(room)
       navigate(room.name)
-    })
+    }
 
-    socket.on('joined', (room) => {
+    const onGuestJoin = (room) => {
       roomContext.setJoinedRoom(room)
       navigate(room.name)
-    })
+    }
+    
+    socket.on('error-room', setErrors)
+    socket.on('new-room-created', onCreateRoom)
+    socket.on('joined', onGuestJoin)
 
     return () => {
       socket.off('error-room', setErrors)
@@ -47,7 +50,7 @@ const RoomMenu = () => {
     e.preventDefault()
 
     if (status === 'Create') {
-      return socket.emit('new-room', {
+      socket.emit('new-room', {
         room: roomName.value,
         host: username.value,
         password: roomPass.value
@@ -55,8 +58,7 @@ const RoomMenu = () => {
     }
 
     if (status === 'Join') {
-      setErrors('true')
-      return socket.emit('join-room', {
+      socket.emit('join-room', {
         room: roomName.value,
         guest: username.value,
         password: roomPass.value
@@ -67,17 +69,17 @@ const RoomMenu = () => {
   return (
     <RoomSection onSubmit={handleSubmit}>
       <Label>Name</Label>
-      <InputController {...username} />
+      <InputController {...username} disabled={socket.disconnected} />
       <Label>Room Name</Label>
-      <InputController {...roomName} />
+      <InputController {...roomName} disabled={socket.disconnected} />
       <Label>Password</Label>
-      <InputController {...roomPass} />
+      <InputController {...roomPass} disabled={socket.disconnected} />
       <Error>{errors.error && errors.message}</Error>
       <ButtonsWrapper>
-        <Button onClick={({ target }) => setStatus(target.innerHTML)}>
+        <Button onClick={({ target }) => setStatus(target.textContent)} disabled={socket.disconnected}>
           Create
         </Button>
-        <Button onClick={({ target }) => setStatus(target.innerHTML)}>
+        <Button onClick={({ target }) => setStatus(target.textContent)} disabled={socket.disconnected}>
           Join
         </Button>
       </ButtonsWrapper>

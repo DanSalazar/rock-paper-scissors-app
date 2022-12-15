@@ -1,14 +1,14 @@
 import styled from 'styled-components'
-import { show } from '../styles'
+import { fade } from '../styles'
 
 export const RoomSection = styled.form`
   width: 90%;
   display: flex;
   flex-direction: column;
-  padding-top: 4em;
-  gap: 12px 0;
+  padding-top: 2.5rem;
+  gap: 0.5rem;
   height: 80%;
-  animation: ${show} var(--transition-mode);
+  animation: ${fade} var(--transition-mode);
 
   @media (prefers-reduced-motion) {
     animation: none;
@@ -16,6 +16,10 @@ export const RoomSection = styled.form`
 
   @media screen and (min-width: 768px) {
     width: 300px;
+  }
+
+  @media (prefers-reduced-motion) {
+    animation: none;
   }
 `
 
@@ -30,6 +34,10 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  button {
+    margin: 0 0.5rem;
+  }
 `
 
 export const InputController = styled.input`
@@ -48,6 +56,10 @@ export const InputController = styled.input`
 
   :focus {
     border: 2px solid var(--red);
+  }
+
+  :disabled {
+    opacity: 0.1;
   }
 `
 

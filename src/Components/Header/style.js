@@ -67,5 +67,5 @@ export const HeaderRoomState = styled(HeaderState)`
     div {
       width: 6.25em;
     }
-  } 
+  }
 `

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../Components/styles'
-import Layout from './Layout.js'
+import Layout from './Layout'
 import RoomMenu from '../Components/RoomMenu/RoomMenu'
 import Header from '../Components/Header/Header'
 
@@ -9,7 +9,7 @@ const NewRoom = () => {
 
   return (
     <Layout buttons={<Button onClick={() => navigate('/')}>Single</Button>}>
-      <Header/>
+      <Header />
       <RoomMenu></RoomMenu>
     </Layout>
   )

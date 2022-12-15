@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components'
-import { show } from '../styles'
+import { fade } from '../styles'
 
 const overlayAnim = keyframes`
   0% {
@@ -21,7 +21,7 @@ export const OptionsMatch = styled.div`
   grid-template-rows: repeat(2, 1fr);
   width: 100%;
   height: auto;
-  animation: ${show} var(--transition-mode);
+  animation: ${fade} var(--transition-mode);
 
   @media (prefers-reduced-motion) {
     animation: none;
@@ -34,6 +34,10 @@ export const OptionsMatch = styled.div`
 
   @media screen and (min-width: 1440px) {
     width: 70%;
+  }
+
+  @media (prefers-reduced-motion) {
+    animation: none;
   }
 `
 
@@ -91,5 +95,9 @@ export const OptionOverlay = styled.div`
       width: ${(props) => props.sizeD || '110px'};
       height: ${(props) => props.sizeD || '110px'};
     }
+  }
+
+  @media (prefers-reduced-motion) {
+    animation: none;
   }
 `

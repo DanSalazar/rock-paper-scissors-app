@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { show } from '../styles'
+import { fade } from '../styles'
 
 export const PentagonWrapper = styled.div`
   position: relative;
@@ -10,7 +10,7 @@ export const PentagonWrapper = styled.div`
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 1em 2.5em;
-  animation: ${show} var(--transition-mode);
+  animation: ${fade} var(--transition-mode);
 
   @media (prefers-reduced-motion) {
     animation: none;

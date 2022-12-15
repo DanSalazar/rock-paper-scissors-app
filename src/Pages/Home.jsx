@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <Layout buttons={<Button onClick={() => navigate('/room')}>Room</Button>}>
       <Header viewScore={false} />
-      <OptionPentagon select={select}/>
+      <OptionPentagon select={select} />
     </Layout>
   )
 }

@@ -7,9 +7,9 @@ const Rules = ({ view, setView }) => {
   const closeView = () => setView(false)
   return (
     <>
-      {view && 
+      {view && (
         <>
-          <ModalForRules onClick={closeView}/>
+          <ModalForRules onClick={closeView} />
           <RulesContent>
             <p>Rules</p>
             <SvgRules src={imageRules} alt='Rules of Game' />
@@ -18,7 +18,7 @@ const Rules = ({ view, setView }) => {
             </RulesButton>
           </RulesContent>
         </>
-      }
+      )}
     </>
   )
 }

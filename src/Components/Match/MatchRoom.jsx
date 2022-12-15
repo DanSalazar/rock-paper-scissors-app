@@ -1,6 +1,6 @@
-import { useEffect, useState, useContext, useMemo } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { OptionsMatch, OptionMatchWrapper } from './style'
-import { RoomMatch } from '../../contexts/RoomMatch'
+import { RoomContext } from '../../contexts/RoomContext'
 import { getWinner } from '../../utils'
 import Option from '../Option/Option'
 import MatchOpponent from './MatchOpponent'
@@ -9,24 +9,23 @@ import PropTypes from 'prop-types'
 
 const SIZES = { D: '200px', M: '100px' }
 
-const Matches = ({ election, opponent, playAgain }) => {
+const MatchRoom = ({ election, opponent, playAgain }) => {
   const [finishMatch, setFinishMatch] = useState(false)
-  const roomContext = useContext(RoomMatch)
-  const resultOfMatch = useMemo(() => getWinner(election, opponent), [opponent])
-  const win = resultOfMatch && resultOfMatch !== 'draw'
-  const lose = !resultOfMatch && resultOfMatch !== 'draw'
+  const roomContext = useContext(RoomContext)
+  const resultOfMatch = getWinner(election, opponent)
+  const result = resultOfMatch === 'Win'
 
   useEffect(() => {
     let finishTimeout
 
     if (opponent) {
       finishTimeout = setTimeout(() => setFinishMatch(true), 1000)
-      if (win) roomContext.setScoreTo('host')
-      if (lose) roomContext.setScoreTo('guest')
+      if (resultOfMatch === 'Win') roomContext.setScoreTo('host')
+      if (resultOfMatch === 'Lose') roomContext.setScoreTo('guest')
     }
 
     return () => clearTimeout(finishTimeout)
-  }, [opponent])
+  }, [opponent, resultOfMatch])
 
   const guestPick = opponent ? 'The guest picked' : 'Waiting for guest'
 
@@ -34,29 +33,30 @@ const Matches = ({ election, opponent, playAgain }) => {
     <>
       <OptionsMatch>
         <OptionMatchWrapper>
-          {election &&
+          {election && (
             <Option
               padding='2.25em'
-              win={win}
+              win={result}
               optionName={election}
               sizeD={SIZES.D}
               sizeM={SIZES.M}
-            />}
+            />
+          )}
           <span>You Picked</span>
         </OptionMatchWrapper>
-         <OptionMatchWrapper>
-          <MatchOpponent opponent={opponent} win={lose} />
+        <OptionMatchWrapper>
+          <MatchOpponent opponent={opponent} win={!result} />
           <span>{guestPick}</span>
         </OptionMatchWrapper>
-        {finishMatch && <Result win={win} draw={resultOfMatch === 'draw'} playAgain={playAgain} />}
+        {finishMatch && <Result result={resultOfMatch} playAgain={playAgain} />}
       </OptionsMatch>
     </>
   )
 }
 
-export default Matches
+export default MatchRoom
 
-Matches.propTypes = {
+MatchRoom.propTypes = {
   election: PropTypes.string.isRequired,
   opponent: PropTypes.string,
   playAgain: PropTypes.func

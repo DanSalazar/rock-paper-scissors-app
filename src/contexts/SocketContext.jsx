@@ -4,23 +4,25 @@ import PropTypes from 'prop-types'
 
 export const SocketContext = createContext({})
 
-export default function SocketProvider ({ children }) {
+const server = import.meta.env.VITE_SERVER
+
+export default function SocketProvider({ children }) {
   const [connection, setConnection] = useState(null)
 
   useEffect(() => {
-    try {
-      const socket = io('https://serv-io-rock-paper-scissors.herokuapp.com')
-      setConnection(socket)
-    } catch (e) {
-      console.log(e)
-    }
+    const socket = io(server, {
+      reconnection: false
+    })
 
+    setConnection(socket)
     return () => connection.close()
   }, [])
 
-  return <SocketContext.Provider value={connection}>
-    {children}
-  </SocketContext.Provider>
+  return (
+    <SocketContext.Provider value={connection}>
+      {children}
+    </SocketContext.Provider>
+  )
 }
 
 SocketProvider.propTypes = {

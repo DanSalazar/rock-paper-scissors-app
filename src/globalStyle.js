@@ -7,6 +7,8 @@ const GlobalStyles = createGlobalStyle`
     --red: hsl(349, 70%, 56%);
     --white: #ccc;
     --transition-mode: 0.4s ease;
+    --green: #00b894;
+    --blue: #3867d6;
   }
   
   * {
@@ -25,6 +27,10 @@ const GlobalStyles = createGlobalStyle`
   img {
     max-width: 100%;
     height: auto;
+  }
+
+  input[type="text"] {
+    font-family: inherit;
   }
 `
 

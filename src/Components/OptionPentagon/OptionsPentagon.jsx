@@ -14,12 +14,14 @@ const mapOptions = [
     gridRow: '2',
     gridCol: '1/1',
     place: 'flex-start'
-  }, {
+  },
+  {
     name: 'paper',
     gridRow: '2',
     gridCol: '2/3',
     place: 'flex-end'
-  }, {
+  },
+  {
     name: 'lizard',
     gridRow: '3',
     gridCol: '1/1',
@@ -37,7 +39,7 @@ const OptionPentagon = ({ select, election }) => {
   return (
     <PentagonWrapper>
       <Pentagon src={PentagonImage} />
-      {mapOptions.map(option => (
+      {mapOptions.map((option) => (
         <Option
           key={option.name}
           handler={select}

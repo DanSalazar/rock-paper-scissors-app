@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
 // Set sizes of option in match view
 const SIZES = { D: '200px', M: '100px' }
 
-const Matches = ({ election, upScore }) => {
+const Match = ({ election, upScore }) => {
   const [finishMatch, setFinishMatch] = useState(false)
   const [opponent, setOpponent] = useState('')
   const navigate = useNavigate()
@@ -24,7 +24,7 @@ const Matches = ({ election, upScore }) => {
       if (resultOfMatch === 'Win') upScore('win')
       if (resultOfMatch === 'Lose') upScore('lose')
     }
-  
+
     return () => clearTimeout(finish)
   }, [opponent])
 
@@ -33,13 +33,15 @@ const Matches = ({ election, upScore }) => {
   return (
     <OptionsMatch>
       <OptionMatchWrapper>
-        {election &&
+        {election && (
           <Option
-            padding='2.25em' win={resultOfMatch === 'Win'}
+            padding='2.25em'
+            win={resultOfMatch === 'Win'}
             optionName={election}
             sizeD={SIZES.D}
             sizeM={SIZES.M}
-          />}
+          />
+        )}
         <span>You Picked</span>
       </OptionMatchWrapper>
 
@@ -52,14 +54,14 @@ const Matches = ({ election, upScore }) => {
         <span>The House Picked</span>
       </OptionMatchWrapper>
 
-      {finishMatch && <Result result={resultOfMatch} playAgain={playAgain}/>}
+      {finishMatch && <Result result={resultOfMatch} playAgain={playAgain} />}
     </OptionsMatch>
   )
 }
 
-export default Matches
+export default Match
 
-Matches.propTypes = {
+Match.propTypes = {
   election: PropTypes.string.isRequired,
   upScore: PropTypes.func.isRequired
 }
