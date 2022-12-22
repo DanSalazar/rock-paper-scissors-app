@@ -1,10 +1,17 @@
+import { useEffect, useRef } from 'react'
 import { Messages } from './styles.js'
 import MessageContainer from './Message'
 import PropTypes from 'prop-types'
 
 const MessagesContainer = ({ messages, currentName }) => {
+  const messagesContainer = useRef(null)
+
+  useEffect(() => {
+    messagesContainer.current.scrollTop = messagesContainer.current.scrollHeight
+  }, [messages])
+
   return (
-    <Messages>
+    <Messages ref={messagesContainer}>
       {messages.map((message, i) => (
         <MessageContainer
           key={i}

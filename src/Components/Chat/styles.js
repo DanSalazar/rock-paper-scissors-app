@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const ChatContainer = styled.div`
   position: fixed;
-  bottom: -32rem;
+  bottom: -64rem;
   height: 60%;
   width: 100%;
   background: hsl(237deg 53% 9%);
@@ -14,7 +14,7 @@ export const ChatContainer = styled.div`
   justify-content: space-between;
 
   @media screen and (min-width: 768px) {
-    right: -20px;
+    right: 0px;
     width: 400px;
     height: 70%;
     border-top-right-radius: 0;
@@ -61,12 +61,11 @@ export const Messages = styled.div`
 export const Message = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 0.25rem;
   width: 50%;
-  gap: 0.15rem;
   border-radius: var(--b-radius);
   border: 2px solid;
   word-break: break-all;
-  height: auto;
   padding: 0.75rem;
   border-color: var(--white);
 
@@ -90,12 +89,8 @@ export const Message = styled.div`
 export const FormChat = styled.form`
   display: flex;
   justify-content: space-between;
-  padding: 1rem 2.25rem;
   gap: 0.5rem;
-
-  @media screen and (min-width: 768px) {
-    padding: 1rem 2.25rem;
-  }
+  padding: 1rem 2.25rem;
 `
 
 export const ChatInput = styled.input`
