@@ -13,15 +13,14 @@ const MatchRoom = ({ election, opponent, playAgain }) => {
   const [finishMatch, setFinishMatch] = useState(false)
   const roomContext = useContext(RoomContext)
   const resultOfMatch = getWinner(election, opponent)
-  const result = resultOfMatch === 'Win'
 
   useEffect(() => {
     let finishTimeout
 
     if (opponent) {
       finishTimeout = setTimeout(() => setFinishMatch(true), 1000)
-      if (resultOfMatch === 'Win') roomContext.setScoreTo('host')
-      if (resultOfMatch === 'Lose') roomContext.setScoreTo('guest')
+      if (resultOfMatch === 'win') roomContext.setScoreTo('host')
+      if (resultOfMatch === 'lose') roomContext.setScoreTo('guest')
     }
 
     return () => clearTimeout(finishTimeout)
@@ -36,7 +35,7 @@ const MatchRoom = ({ election, opponent, playAgain }) => {
           {election && (
             <Option
               padding='2.25em'
-              win={result}
+              win={resultOfMatch === 'win'}
               optionName={election}
               sizeD={SIZES.D}
               sizeM={SIZES.M}
@@ -45,10 +44,10 @@ const MatchRoom = ({ election, opponent, playAgain }) => {
           <span>You Picked</span>
         </OptionMatchWrapper>
         <OptionMatchWrapper>
-          <MatchOpponent opponent={opponent} win={!result} />
+          <MatchOpponent opponent={opponent} win={resultOfMatch === 'lose'} />
           <span>{guestPick}</span>
         </OptionMatchWrapper>
-        {finishMatch && <Result result={resultOfMatch} playAgain={playAgain} />}
+        <Result result={resultOfMatch} playAgain={playAgain} finish={finishMatch} />
       </OptionsMatch>
     </>
   )

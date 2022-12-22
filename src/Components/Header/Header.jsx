@@ -11,7 +11,7 @@ import Logo from '../../images/logo-bonus.svg'
 const Header = ({ score, viewScore }) => {
   return (
     <HeaderStyled>
-      <HeaderLogo alt='logo' src={Logo} />
+      <HeaderLogo alt='Rock, Paper, Scissors, Lizard, Spock' src={Logo} />
       {viewScore && (
         <HeaderState>
           <div>

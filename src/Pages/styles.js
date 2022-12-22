@@ -1,24 +1,31 @@
 import styled from 'styled-components'
 
 export const AppContainer = styled.div`
-  width: 85%;
   height: 100vh;
   display: flex;
-  padding: 1.25em 0;
+  padding: 1rem;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: auto;
+
+  @media screen and (min-width: 320px) {
+    padding: 1rem 2rem;
+  }
 
   @media screen and (min-width: 1440px) {
-    width: 100%;
     padding: 2.25em 3em;
   }
 `
 
 export const ButtonsWrapper = styled.div`
   button {
-    margin: 0 .5rem;
+    margin: 0 0.25rem;
+  }
+
+  @media screen and (min-width: 320px) {
+    button {
+      margin: 0 0.5rem;
+    }
   }
 
   @media screen and (min-width: 1024px){

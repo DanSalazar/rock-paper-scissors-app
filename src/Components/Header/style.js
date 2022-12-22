@@ -2,50 +2,74 @@ import styled from 'styled-components'
 
 export const HeaderStyled = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   border: 3px solid hsl(217, 16%, 45%);
-  border-radius: 1em;
+  border-radius: 1rem;
   width: 100%;
-  height: auto;
-  padding: 1.25em;
+  padding: 1.5rem 1rem;
+
+  @media screen and (min-width: 325px) {
+    justify-content: space-between;
+  }
+
+  @media screen and (min-width: 425px) {
+    padding: 1.5rem;
+  }
 
   @media screen and (min-width: 1024px) {
-    max-width: 60%;
+    max-width: 70%;
   }
 `
 
 export const HeaderLogo = styled.img`
-  max-width: 25%;
-
-  @media screen and (min-width: 768px) {
+  display: none;
+  
+  @media screen and (min-width: 325px) {
     max-width: 30%;
+    display: block;
+  }
+
+  @media screen and (min-width: 425px) {
+    max-width: 40%;
+    display: block;
   }
 `
 
 export const HeaderState = styled.div`
-  background-color: #fff;
-  border-radius: var(--b-radius);
-  height: auto;
-  text-transform: uppercase;
   text-align: center;
-  min-width: 7.35em;
-  padding: 0.875em 0;
   font-weight: 700;
 
   div {
     display: flex;
     flex-direction: column;
+    background-color: #fff;
+    padding: 0.75rem 0;
+    width: 5rem;
+    border-radius: var(--b-radius);
   }
 
-  @media screen and (min-width: 1024px) {
-    max-width: 50%;
+  @media screen and (min-width: 325px) {
+    div {
+      width: 4.5rem;
+    }
+  }
+
+  @media screen and (min-width: 425px) {
+    div {
+      padding: 0.875rem 0;
+      width: 6rem;
+    }
   }
 `
 
 export const HeaderScore = styled.span`
-  font-size: 3em;
+  font-size: 2.25rem;
   color: hsl(229, 25%, 31%);
+
+  @media screen and (min-width: 375px) {
+    font-size: 2.75rem;
+  }
 `
 
 export const HeaderScoreTitle = styled.span`
@@ -54,18 +78,12 @@ export const HeaderScoreTitle = styled.span`
 
 export const HeaderRoomState = styled(HeaderState)`
   display: flex;
-  min-width: auto;
-  font-size: 0.75em;
+  font-size: 1rem;
+  gap: 0.5rem;
+  width: 100%;
+  justify-content: center;
 
-  div {
-    width: 5em;
-  }
-
-  @media screen and (min-width: 320px) {
-    font-size: 1em;
-
-    div {
-      width: 6.25em;
-    }
+  @media screen and (min-width: 325px) {
+    justify-content: flex-end;
   }
 `

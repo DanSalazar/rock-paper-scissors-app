@@ -1,23 +1,36 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+import { fade } from '../styles'
 
-export const OptionBorder = styled.div`
+export const OptionBorder = styled.button`
   border-radius: 50%;
+  padding: 1rem;
   cursor: pointer;
-  padding: 0.875em;
   background: ${(props) =>
     props.gradient && `linear-gradient(to top, ${props.gradient})`};
-  box-shadow: inset 0px -6px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0px -6px 2px rgba(0, 0, 0, 0.1);
   grid-column: ${(props) => props.gridCol};
   grid-row: ${(props) => props.gridRow};
   place-self: ${(props) => props.place};
-  animation: ${(props) => props.win && 'winAnim 0.15s ease forwards'};
+  animation: fade var(--transition-mode);
+  animation: ${(props) => props.win && `winAnimation 0.15s ease forwards, fade var(--transition-mode)`};
   transition: 0.4s ease;
+  border: none;
 
-  &:hover {
-    transform: scale(1.1);
+  @media (prefers-reduced-motion) {
+    animation: none;
   }
 
-  @keyframes winAnim {
+  @keyframes fade {
+    0% {
+      opacity: 0;
+      }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes winAnimation {
     0% {
       box-shadow: 0px 0px 0px hsla(0, 0%, 100%, 0.3);
     }
@@ -30,12 +43,16 @@ export const OptionBorder = styled.div`
     }
   }
 
+  &:hover {
+    transform: scale(1.030);
+  }
+
   @media screen and (max-width: 320px) {
-    padding: 0.6em;
+    padding: 0.6rem;
   }
 
   @media screen and (min-width: 1024px) {
-    padding: ${(props) => props.padding || '1em'};
+    padding: ${(props) => props.padding || '0.75rem'};
   }
 
   @media (prefers-reduced-motion) {
@@ -54,20 +71,16 @@ export const OptionStyled = styled.div`
   box-shadow: inset 0px 6px 4px rgba(0, 0, 0, 0.15);
 
   @media screen and (max-width: 320px) {
-    width: 65px;
-    height: 65px;
+    width: 60px;
+    height: 60px;
   }
 
   @media screen and (min-width: 1024px) {
-    width: ${(props) => props.sizeD || '110px'};
-    height: ${(props) => props.sizeD || '110px'};
+    width: ${(props) => props.sizeD || '6rem'};
+    height: ${(props) => props.sizeD || '6rem'};
   }
 `
 
 export const Svg = styled.img`
-  max-width: 45%;
-
-  @media screen and (min-width: 1024px) {
-    min-width: 40%;
-  }
+  width: 50%;
 `

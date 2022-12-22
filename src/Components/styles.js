@@ -21,17 +21,13 @@ export const fade = keyframes`
 `
 
 export const Modal = styled.div`
-  background: rgba(0, 0, 0, 0.75);
   position: fixed;
-  backdrop-filter: blur(1.25px);
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  animation: ${fade} 50ms ease;
 
   @media (prefers-reduced-motion) {
-    animation: none;
     backdrop-filter: blur(0px);
   }
 `
