@@ -8,9 +8,9 @@ import MatchOpponent from './MatchOpponent'
 import PropTypes from 'prop-types'
 
 // Set sizes of option in match view
-const SIZES = { D: '200px', M: '100px' }
+const SIZES = { D: '170px', M: '100px' }
 
-const Match = ({ election, upScore }) => {
+const Match = ({ election, upScore, playAgain }) => {
   const [finishMatch, setFinishMatch] = useState(false)
   const [opponent, setOpponent] = useState('')
   const navigate = useNavigate()
@@ -20,23 +20,20 @@ const Match = ({ election, upScore }) => {
     let finish
 
     if (opponent) {
+      upScore(resultOfMatch)
       finish = setTimeout(() => setFinishMatch(true), 1500)
-      if (resultOfMatch === 'Win') upScore('win')
-      if (resultOfMatch === 'Lose') upScore('lose')
     }
 
     return () => clearTimeout(finish)
   }, [opponent])
-
-  const playAgain = () => navigate('/')
 
   return (
     <OptionsMatch>
       <OptionMatchWrapper>
         {election && (
           <Option
-            padding='2.25em'
-            win={resultOfMatch === 'Win'}
+            padding='2rem'
+            win={resultOfMatch === 'win'}
             optionName={election}
             sizeD={SIZES.D}
             sizeM={SIZES.M}
@@ -44,17 +41,15 @@ const Match = ({ election, upScore }) => {
         )}
         <span>You Picked</span>
       </OptionMatchWrapper>
-
       <OptionMatchWrapper>
         <MatchOpponent
           opponent={opponent}
-          win={resultOfMatch === 'Lose'}
+          win={resultOfMatch === 'lose'}
           setOpponent={setOpponent}
         />
         <span>The House Picked</span>
       </OptionMatchWrapper>
-
-      {finishMatch && <Result result={resultOfMatch} playAgain={playAgain} />}
+      <Result result={resultOfMatch} playAgain={playAgain} finish={finishMatch} />
     </OptionsMatch>
   )
 }
@@ -63,5 +58,6 @@ export default Match
 
 Match.propTypes = {
   election: PropTypes.string.isRequired,
-  upScore: PropTypes.func.isRequired
+  upScore: PropTypes.func.isRequired,
+  playAgain: PropTypes.func.isRequired
 }

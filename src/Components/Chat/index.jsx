@@ -17,7 +17,7 @@ function Chat({ open, onCloseChat }) {
   }
 
   return (
-    <ChatContainer style={{ bottom: open ? '0' : '-32rem' }}>
+    <ChatContainer style={{ bottom: open ? '0' : '-64rem' }}>
       <ChatHeader>
         <span>Chat</span>
         <button onClick={onCloseChat}>&times;</button>

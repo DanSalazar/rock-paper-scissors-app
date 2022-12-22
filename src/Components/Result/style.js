@@ -2,11 +2,13 @@ import styled from 'styled-components'
 import { fade, Button } from '../styles'
 
 export const ResultContainer = styled.div`
-  animation: ${fade} 0.2s ease;
   grid-column: 1/3;
   align-self: center;
   justify-self: center;
-  width: 50%;
+
+  div {
+    animation: ${fade} 0.2s ease;
+  }
 
   @media (prefers-reduced-motion) {
     animation: none;
@@ -15,6 +17,7 @@ export const ResultContainer = styled.div`
   @media screen and (min-width: 1024px) {
     grid-column: 2/2;
     grid-row: 1;
+    width: 50%;
   }
 `
 

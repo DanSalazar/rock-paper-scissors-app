@@ -20,12 +20,12 @@ const HeaderRoom = () => {
       <HeaderLogo alt='logo' src={Logo} />
       <HeaderRoomState>
         <div>
-          <HeaderScoreTitle>You</HeaderScoreTitle>
+          <HeaderScoreTitle>YOU</HeaderScoreTitle>
           <HeaderScore>{score.host}</HeaderScore>
           <HeaderScoreTitle>{players[0]}</HeaderScoreTitle>
         </div>
         <div>
-          <HeaderScoreTitle>Guest</HeaderScoreTitle>
+          <HeaderScoreTitle>GUEST</HeaderScoreTitle>
           <HeaderScore>{score.guest || 0}</HeaderScore>
           <HeaderScoreTitle>{players[1] || ''}</HeaderScoreTitle>
         </div>

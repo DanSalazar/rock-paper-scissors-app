@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 const OPTIONS = ['scissors', 'paper', 'spock', 'lizard', 'rock']
 
-const SIZES = { D: '200px', M: '100px' }
+const SIZES = { D: '170px', M: '100px' }
 
 const MatchOpponent = ({ opponent, win, setOpponent }) => {
   useEffect(() => {
@@ -13,7 +13,7 @@ const MatchOpponent = ({ opponent, win, setOpponent }) => {
     if (setOpponent)
       timer = setTimeout(
         () => setOpponent(OPTIONS[Math.round(Math.random() * 4)]),
-        1500
+        2000
       )
     return () => clearTimeout(timer)
   }, [setOpponent])
@@ -24,7 +24,7 @@ const MatchOpponent = ({ opponent, win, setOpponent }) => {
         <Option
           sizeD={SIZES.D}
           sizeM={SIZES.M}
-          padding='2.25em'
+          padding='2rem'
           optionName={opponent}
           win={win}
         />

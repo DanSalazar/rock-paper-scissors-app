@@ -50,7 +50,7 @@ const Option = ({
       <OptionStyled data-value={optionName} sizeM={sizeM} sizeD={sizeD}>
         <Svg
           src={imageOfOption[optionName]}
-          alt='icon-option'
+          alt={optionName}
           data-value={optionName}
         />
       </OptionStyled>
