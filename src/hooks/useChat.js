@@ -4,9 +4,13 @@ import { RoomContext } from '../contexts/RoomContext'
 
 function useChat() {
   const socket = useSocket()
-  const { room, pushMessage } = useContext(RoomContext)
+  const { room, pushMessage, messages } = useContext(RoomContext)
 
   const createNewMessage = (value) => {
+    if (!value) {
+      return
+    }
+    
     const author = room.players[0]
 
     const message = {
@@ -28,7 +32,7 @@ function useChat() {
 
   return {
     createNewMessage,
-    messages: room.messages,
+    messages,
     currentName: room.players[0]
   }
 }

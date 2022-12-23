@@ -44,7 +44,7 @@ export const HeaderState = styled.div`
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    padding: 0.75rem 0;
+    padding: 0.7rem 0;
     width: 5rem;
     border-radius: var(--b-radius);
   }
@@ -57,7 +57,6 @@ export const HeaderState = styled.div`
 
   @media screen and (min-width: 425px) {
     div {
-      padding: 0.875rem 0;
       width: 6rem;
     }
   }

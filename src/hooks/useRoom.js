@@ -76,7 +76,7 @@ export default function useRoom() {
 
   const handleElection = (value) => {
     roomContext.setElection(value)
-    socket.emit('election', { value })
+    socket.emit('election', value)
     setMatch(true)
   }
 

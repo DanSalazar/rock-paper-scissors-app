@@ -8,6 +8,7 @@ export default function RoomContextProvider({ children }) {
   const [election, setElection] = useState('')
   const [opponent, setOpponent] = useState('')
   const [room, setCurrentRoom] = useState(null)
+  const [messages, setMessages] = useState([])
 
   const setRoom = (room) => {
     if (room.name) {
@@ -20,7 +21,8 @@ export default function RoomContextProvider({ children }) {
   }
 
   const setJoinedRoom = (room) => {
-    setCurrentRoom({ ...room, players: [room.players[1], room.players[0]] })
+    console.log(room)
+    setCurrentRoom({ ...room })
   }
 
   const playerLeaves = () => {
@@ -42,15 +44,14 @@ export default function RoomContextProvider({ children }) {
     cleanScore()
     cleanElections()
     setCurrentRoom({})
+    setMessages([])
   }
 
   const pushMessage = (message) => {
-    setCurrentRoom((currentRoom) => {
-      return {
-        ...currentRoom,
-        messages: currentRoom.messages.concat(message)
-      }
-    })
+    setMessages((currentMessages) => ([
+      ...currentMessages,
+      message
+    ]))
   }
 
   return (
@@ -70,6 +71,7 @@ export default function RoomContextProvider({ children }) {
         cleanScore,
         setJoinedRoom,
         cleanElections,
+        messages,
         pushMessage
       }}>
       {children}
